@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UpdatePublicationsAndReportsRequest extends FormRequest
 {
@@ -21,29 +22,47 @@ class UpdatePublicationsAndReportsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'required' , 
+         
+
+
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar = [
             'title_ar'=>'required',
             'images'=>'',
             'file'=>'',
         ];
+        $role_en =[
+            'title' => 'required' , 
+            'images'=>'',
+            'file'=>'',
+        ];
+
+        if($selectedLanguage == "ar"){
+        
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
+            
     }
     public function getData()
     {
         $data=$this->validated();
 
-        if ($this->hasFile('image')) 
+        if ($this->hasFile('images')) 
         {
             $path = 'uploads/images/slider/';
-            $nameImage = time()+rand(1,10000000).'.'. $this->file('image')->getClientOriginalExtension();
-            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('image') ));
-            $data['image'] = $path.$nameImage ;
+            $nameImage = time()+rand(1,10000000).'.'. $this->file('images')->getClientOriginalExtension();
+            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('images') ));
+            $data['images'] = $path.$nameImage ;
         }
         if ($this->hasFile('file')) 
         {
             $path = 'uploads/files/reports/';
             $nameImage = time()+rand(1,10000000).'.'. $this->file('file')->getClientOriginalExtension();
-            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('image') ));
+            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('file') ));
             $data['file'] = $path.$nameImage ;
         }
         return $data ; 

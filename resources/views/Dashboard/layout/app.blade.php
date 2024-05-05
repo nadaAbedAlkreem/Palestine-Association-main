@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
-<html lang="en">
+ 
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<!--begin::Head-->
 	<head><base href="../../../">
-		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+		<title>{{__('dashboard.Palestine_Educational_Society_for_Environmental_Protection')}}</title>
 		<meta charset="utf-8" />
+ 		<meta name="current-lang" content="{{ app()->getLocale() }}">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,15 +14,31 @@ License: For each use you must have a valid license purchased only from above li
 		<meta property="og:type" content="article" />
 		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
+		<meta property="og:site_name" content="{{__('dashboard.Palestine_Educational_Society_for_Environmental_Protection')}}" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="icon" href="{{ asset('images/palestine_.png') }}" type="image/x-icon" />
+      <!-- <script src="https://cdn.tiny.cloud/1/nddxbuy13xuya71p7x96784ek19lsnl8ab64xj9axbing6px/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --> -->
+	  <!-- <link href="{{url('assets/plugins/tinymce/js/tinymce/tinymce.min.js')}}" rel="stylesheet" type="text/css" /> -->
+	  <!-- <script src="https://cdn.tiny.cloud/1/nddxbuy13xuya71p7x96784ek19lsnl8ab64xj9axbing6px/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> -->
+
+		<!-- <script>
+			tinymce.init({
+				selector: 'textarea1',
+				plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+				toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+			});
+		</script>   -->
+		<!-- <script src="https://cdn.tiny.cloud/1/nddxbuy13xuya71p7x96784ek19lsnl8ab64xj9axbing6px/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
+
 			<!--begin::Fonts-->
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
-		<!--end::Fonts-->
+		<!--end::Fonts--> <script>
+ 
+    </script>
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link href="{{url('assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendor Stylesheets-->
+ 
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{{url('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{url('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -43,15 +51,15 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
  		<link href="{{url('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-  
-  
-<script>tinymce.init({selector:'textarea'});</script>
+        <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
+
+<!-- <script>tinymce.init({selector:'textarea'});</script> -->
 		<!--end::Global Stylesheets Bundle-->
 	</head>
         @include('Dashboard.asset.css') 
 	
 	</head>
+	 
      <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
  		<!--begin::Main-->
 		<!--begin::Root-->

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\partnersDatatableService ; 
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
+use App ;
 class PartnersController extends Controller
 {
     /**
@@ -18,7 +19,7 @@ class PartnersController extends Controller
     {
         if ($request->ajax()) 
         {
-            $data = Partners::select('*') ;
+            $data = Partners::select('*')->where('language' , App::getLocale()) ;
             
             try {
                 return $partnersDatatableService->handle($request,$data);
@@ -28,7 +29,7 @@ class PartnersController extends Controller
                 ], 500);
             }
         }
-         return view('Dashboard.partners.index') ; 
+         return view('Dashboard.partners.index' ) ; 
     }
 
     /**
@@ -36,7 +37,7 @@ class PartnersController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.partners.create') ; 
+        return view('Dashboard.partners.create'  , ["CurrentLang"=>App::getLocale()]) ; 
 
     }
 
@@ -45,7 +46,7 @@ class PartnersController extends Controller
      */
     public function store(StorePartnersRequest $request)
     {
-        $create_Partners = Partners::create($request->getData()); 
+         $create_Partners = Partners::create($request->getData()); 
         return $create_Partners? parent::successResponse():  parent::errorResponse(); 
     }
 
@@ -62,9 +63,8 @@ class PartnersController extends Controller
      */
     public function edit($id)
     {
-        
         $partners = Partners::where('id' , $id)->first(); 
-        return view('Dashboard.partners.edit' , ['partners' => $partners]) ; 
+        return view('Dashboard.partners.edit' , ['partners' => $partners]  ,  ["CurrentLang"=>App::getLocale()]) ; 
     } 
 
     /**

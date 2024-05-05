@@ -14,12 +14,16 @@ class EmploymentsOrdersController extends Controller
      */
     public function index( Request $request )
     {
-        
+  
         if ($request->ajax()) 
         {
             $data = EmploymentsOrders::select('*') ; 
             return DataTables::of($data)
+            ->addColumn('cv' , function($data){
+            return '<td><a href="' . route('download', ["file"=>$data->cv]) . '"   class="btn btn-outline-success">   <i class="fas fa-download"></i> Download</a></td>';
+            })
             ->addIndexColumn()
+            ->rawColumns(['cv'])
             ->make(true); 
         }    
         return view('Dashboard.employmentsOrders.index');

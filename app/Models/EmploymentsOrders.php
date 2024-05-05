@@ -20,5 +20,6 @@ class EmploymentsOrders extends Model
         'qualification',
         'Birthday', 
         'cv', 
+        'language'
 ];
 }

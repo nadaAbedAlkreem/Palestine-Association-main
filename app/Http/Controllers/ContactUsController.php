@@ -15,10 +15,11 @@ class ContactUsController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request  , ContactUsDatatableService $contactUsDatatableService)
-    {
+      {
         if ($request->ajax()) 
         {
             $data = ContactUs::select('*') ;  
+        
             try {
                 return $contactUsDatatableService->handle($request,$data);
             } catch (Throwable $e) {

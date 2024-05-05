@@ -17,7 +17,8 @@ class PartnersDatatableService extends Controller
 {
     public function handle( $request,$data)
     {
-             return DataTables::of($data)
+
+              return DataTables::of($data)
                     ->addIndexColumn()
                     
                     ->filter(function ($instance) use ($request) {
@@ -63,8 +64,28 @@ class PartnersDatatableService extends Controller
                    ' ;
                    })  
                    
+                   ->addColumn('name_ar' , function ($data){
+                    $nameImage = $data->images; 
+                     $url=asset("/storage2/$nameImage");
+
+                    return ' 
+                    <div class="d-flex align-items-center">
+                        <!--begin::Thumbnail-->
+                        <a href="" class="symbol symbol-50px">
+                            <span class="symbol-label" style="background-image:url('.$url.');"></span>
+                        </a>
+                        <!--end::Thumbnail-->
+                        <div class="ms-5">
+                            <!--begin::Title-->
+                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->name_ar.'</a>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+          
+               ' ;
+               })  
                
-                    ->rawColumns([ 'action'  , 'name'])
+                    ->rawColumns([ 'action'  , 'name'  ,'name_ar'])
                     ->make(true); 
            
     }

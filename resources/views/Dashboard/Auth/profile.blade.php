@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('Dashboard.Auth.layout.app')
 
 @section('content')
 <div id="kt_content_container" class="container-xxl">

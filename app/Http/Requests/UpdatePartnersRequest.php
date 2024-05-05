@@ -22,11 +22,26 @@ class UpdatePartnersRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' =>'required' , 
-            'name_ar' =>'required' , 
+        
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar =   [
+             'name_ar' =>'required' , 
             'images'=>'' , 
         ];
+        $role_en = [
+            'name' =>'required' , 
+             'images'=>'' , 
+        ];
+
+        if($selectedLanguage == "ar"){
+        
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
+            
     }
 
     public  function getData()

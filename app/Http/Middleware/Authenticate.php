@@ -13,9 +13,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        if( !Auth::guard('admin')->user()) {
-            return route('login');
+        
+        if (!Auth::check()) {
+            return 'login/';
         }
+        return $next($request);
 
      }
 }

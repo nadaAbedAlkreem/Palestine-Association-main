@@ -31,8 +31,7 @@ class VolunteeringContoller extends Controller
         {
             if($request['number_page'] == 0)
             {
-        
-            $validated_1 = $request->validate([
+             $validated_1 = $request->validate([
                 'name' => 'required|max:255',
                 'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                 'address' => 'required',

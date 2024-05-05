@@ -12,5 +12,6 @@
 		<link href="{{url('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!-- <link href="{{url('assets/css/plugins.css')}}" rel="stylesheet"> -->
  
+		<link href="{{ url('assets/css/arabic-styles.css') }}" rel="stylesheet" type="text/css">
 
  

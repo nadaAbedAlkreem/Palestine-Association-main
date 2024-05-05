@@ -22,20 +22,40 @@ class StorePublicationsAndReportsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'required' , 
+        
+
+
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar = [
             'title_ar'=>'required',
             'images'=>'required',
             'file'=>'required',
         ];
+        $role_en = 
+            [
+                'title' => 'required' , 
+                'images'=>'required',
+                'file'=>'required',
+            ];
+         
+
+        if($selectedLanguage == "ar"){
+        
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
     }
     public function getData()
     {
         $data=$this->validated();
+        $data['language'] = $this->input('language', 'en');
 
         if ($this->hasFile('images')) 
         {
-            $path = 'uploads/images/slider/';
+            $path = 'uploads/images/publicationAndReport/';
             $nameImage = time()+rand(1,10000000).'.'. $this->file('images')->getClientOriginalExtension();
             Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('images') ));
             $data['images'] = $path.$nameImage ;

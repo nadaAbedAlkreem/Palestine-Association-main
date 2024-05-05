@@ -1,16 +1,6 @@
 @extends('webApplication.layouts.app')
 
 @section('web_content')
-   
-
-
-
-
-
-
-
-
-
 <header class="heade">
       <div class="back_heder"></div>
       <div class="">
@@ -19,41 +9,36 @@
           <!-- Swiper -->
           <div class="swiper mySwiper arow d-flex">
             <div class="swiper-wrapper ">
-              <div class="swiper-slide centerimgheder">
-                <img src="{{url('imges/Placeholder.png')}}" alt="">
-                <img class="shado" src="{{url('imges/Program icons/Rectangle 1502.png')}}" alt="">
-                <div class="textimg textimg1 animate__animated animate__fadeInUp">
-                  <h1>الذين ليس لديهم أمل ! </h1>
-                  <p>بيئة متميزة ، مؤسسة خيرية ، نموذج إبداعي طبيعي</p>
-                  <button class="mored">عرض التفاصيل</button>
-                </div>
+              @if(!empty($sliders))
+                @foreach($sliders as $slider)
+                <div class="swiper-slide centerimgheder">
+                  <img src="{{url('/storage2/'. $slider->image)}}" alt="">
+                  <img class="shado" src="{{url('imges/Program icons/Rectangle 1502.png')}}" alt="">
+                  <div class="textimg textimg1 animate__animated animate__fadeInUp">
+                    @if($CurrentLang == "en")
+                    <h1>{{$slider->title}}</h1>
+                    <p>{{$slider->description}}</p>
+                    @else 
+                    <h1>{{$slider->title_ar}}</h1>
+                    <p>{{$slider->description_ar}}</p>
+                    @endif
+                    @if($slider->rediract_to != null)
+                    <?php  $style = ($slider->active == 0)? "mored": "usbtn" ;
+                           $route = ($slider->redirect_to == "contact_us") ? 'contactUs.home' : 'contactUs.home' ; 
+                    ?>
 
-              </div>
-              <div class="swiper-slide centerimgheder d-flex">
-                <img src="imges/Placeholder.png" alt="">
-                <img class="shado" src="{{url('imges/Program icons/Rectangle 1502.png')}}" alt="">
-                <div class="textimg textimg2 animate__animated animate__fadeInUp">
-                  <h1>الذين ليس لديهم أمل ! </h1>
-                  <p>بيئة متميزة ، مؤسسة خيرية ، نموذج إبداعي طبيعي</p>
-                  <!-- <form action="">
-                    <div class="serch">
-                      <input type="text">
-                      <div class="serchtex"><p><a href="">بحث</a></p></div>
-                    </div>
-                  </form> -->
-                  
+                    @if($slider->news  != null )
+                     
+                    <form method="get" action="{{ route('web.news.index' , ['id' => $slider->news->id])}}">
+                    <button type="submit" class={{$style}}> {{$slider->text_button}} </button>
+                    </form>
+                    @endif
+                    @endif
+                   </div>
                 </div>
-
-              </div>
-              <div class="swiper-slide centerimgheder">
-                <img src="{{url('imges/iiii2.jpeg')}}" alt="">
-                <img class="shado" src="{{url('imges/Program icons/Rectangle 1502.png')}}" alt="">
-                <div class="textimg textimg3 animate__animated animate__fadeInUp">
-                  <h1>الذين ليس لديهم أمل ! </h1>
-                  <p>بيئة متميزة ، مؤسسة خيرية ، نموذج إبداعي طبيعي</p>
-                  <button class="usbtn">تواصل معنا </button>
-                </div>
-              </div>
+                @endforeach
+              @endif
+ 
         </div>
         <div class="next "><i class='bx bx-right-arrow-alt'></i></div>
         <div class="prev"><i class='bx bx-left-arrow-alt'></i></div>
@@ -67,96 +52,34 @@
     <section class="news  ">
       <div class="containerr">
         <div class="textnews">
-          <h1>اخر الأخبار</h1>
-          <a href="news.html"><h6>عرض الكل</h6></a>
-        </div>
-
-        <div class="swiper mySwiper2">
+          <h1>{{__('setting.latest_news')}}</h1>
+          <a href="{{route('news.all')}}"><h6>{{__('setting.view_all')}}</h6></a>
+        </div>     
+          <div class="swiper mySwiper2">
           <div class="swiper-wrapper ">
+            @if(!empty($latestNews))
+            @foreach($latestNews as $latestNew )
+            <a href="{{route('web.news.index' , ['id'=> $latestNew->id])}}"> 
+              <div class=" card cardNews swiper-slide">
+                <img src="{{url('/storage2/'. $latestNew->images[0]->url)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                @if($CurrentLang == "en") 
+                    <a href="{{route('web.news.index' ,['id' => $latestNew->id])}}"><h5 class="card-title">{{$latestNew->title}}</h5></a>
+                    <p class="card-text">{{ Illuminate\Support\Str::limit($latestNew->description, 50) }}</p>
+                @else 
+                    <a href="{{route('web.news.index' ,['id' => $latestNew->id])}}"><h5 class="card-title">{{$latestNew->title_ar}}</h5></a>
+                    <p class="card-text">{{ Illuminate\Support\Str::limit($latestNew->description_ar, 50) }}</p>
+                @endif
 
-           <a href="news_details.html"> <div class=" card cardNews swiper-slide" style=" border: none;">
-              <img src="imges/WhatsApp Image 2022-08-30 at 3.37.42 AM.jpeg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع >زيارة وفد رفيع المستوى >زيارة وفد رفيع المستوى >زيارستوى المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-            
+
+                </div>
               </div>
-            </div>
-          </a>
-
-          <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide">
-              <img src="imges/ii2.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">وفد رفيع المستوى وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-
-
-            <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide" >
-              <img src="imges/ii3.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-
-
-            <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide">
-              <img src="imges/ii4.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-          <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide">
-              <img src="imges/ii4.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-          <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide">
-              <img src="imges/ii4.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-
-            <a href="news_details.html"> 
-            <div class=" card cardNews swiper-slide">
-              <img src="imges/ii4.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <a href="news_details.html"><h5 class="card-title">زيارة وفد رفيع المستوى</h5></a>
-                <p class="card-text">تعمل الجمعية على تعزيز مفاهم حماية البيئة من خلال نشر الوعي البيئي
-                </p>
-                 
-              </div>
-            </div>
-          </a>
-
+            </a>
+            @endforeach
+            @endif     
+ 
+ 
+ 
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -166,52 +89,30 @@
     <section class="association_pro">
       <div class="containerr">
         <div class="textnews">
-          <h1> برامج الجمعية</h1>
-          <a href="programs.html"><h6>عرض الكل</h6></a>
+          <h1>{{__('setting.association_programs')}}</h1>
+          <a href="{{route('programs.all')}}"><h6>{{__('setting.view_all')}}</h6></a>
         </div>
 
         <div class="allcardpro">
-          <a href="Program_Details.html">
-          <div class="cardpro" >
-            <img src="imges/Layer_21.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h4><a href="Program_Details.html">الإغاثة والطوارئ</a></h4>
-            <p>مصداقية أنها فعالة من حيث التكلفة
-              والخبرة وعملية تمكين شبكة الانترنت
-              أن التحسينات قنوات سلس تماماً</p>
-          </div>
-        </a>
+          @if(!empty($programs))
+            @foreach($programs as $program)
+              <a href="{{route('programs.details' , ['id' => $program->id])}}">
+              <div class="cardpro" >
+                  <img src="{{url('/storage2/'.$program->image)}}" alt="" data-tilt data-tilt-scale="1.1">
+                 @if($CurrentLang == "en")   
+                  <h4><a href="{{route('programs.details' , ['id' => $program->id])}}">{{$program->title}}</a></h4>
+                  <p>{{$program->brief}}</p>
+                  @else 
+                  <h4><a href="{{route('programs.details' , ['id' => $program->id])}}">{{$program->title_ar}}</a></h4>
+                  <p>{{$program->brief_ar}}</p>
+                 @endif
+              </div>
+              </a>
+            @endforeach
+          @endif
+       
 
-        <a href="Program_Details.html">
-          <div class="cardpro">
-            <img src="imges/Layer_2_00000167396982694258960430000016806119312875533229_.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h4><a href="Program_Details.html"> حماية البيئة</a></h4>
-            <p>مصداقية أنها فعالة من حيث التكلفة
-              والخبرة وعملية تمكين شبكة الانترنت
-              أن التحسينات قنوات سلس تماماً</p>
-          </div>
-        </a>
-
-          <a href="Program_Details.html">
-          <div class="cardpro">
-            <img src="imges/Layer_1-2.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h4> <a href="Program_Details.html">بناء القدرات</a></h4>
-            <p>مصداقية أنها فعالة من حيث التكلفة
-              والخبرة وعملية تمكين شبكة الانترنت
-              أن التحسينات قنوات سلس تماماً</p>
-          </div>
-        </a>
-
-          <a href="Program_Details.html">
-          <div class="cardpro">
-            <img src="imges/lay4.png" data-tilt data-tilt-scale="1.1" alt="">
-            <h4> <a href="Program_Details.html">التمكين الاقتصادي</a></h4>
-            <p>مصداقية أنها فعالة من حيث التكلفة
-              والخبرة وعملية تمكين شبكة الانترنت
-              أن التحسينات قنوات سلس تماماً</p>
-          </div>
-        </a>
-
-
+        
         </div>
 
       </div>
@@ -222,42 +123,21 @@
     <section class="count_sec" id="count_sec">
       <div class="containerr">
         <div class="textnews">
-          <h1> أبرز الإنجازات</h1>
+          <h1>{{__('setting.Most_notable_achievements')}}</h1>
         </div>
 
         <div class="allcardpro">
-          <div class="cardpro crad_achievements" >
-            <img class="h" src="imges/Group 7814.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h3> الشركات العالمية</h3>
-            <div class="con">
-              <h2  class="counter" data-target="1500"></h2><h2>+</span>
+         @if(!empty($achievements))
+          @foreach($achievements as $achievement)
+            <div class="cardpro crad_achievements">
+              <img src="{{url('/storage2/'.$achievement->image)}}" alt="" data-tilt data-tilt-scale="1.1">
+                 <h3 > <?php  ($CurrentLang == "en") ? $achievement->title : $achievement->title_ar ?></h3>
+               <div class="con">
+                  <h2  class="counter" data-target="{{$achievement->count}}"></h2><h2>+</span>
+                </div>
             </div>
-
-          </div>
-          <div class="cardpro crad_achievements">
-            <img src="imges/Group 7815.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h3> المتبرعين</h3>
-            <div class="con">
-              <h2  class="counter" data-target="100"></h2><h2>+</span>
-            </div>
-
-          </div>
-          <div class="cardpro crad_achievements">
-            <img src="imges/Group 7816.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h3> مهمات منجزة</h3>
-            <div class="con">
-              <h2  class="counter" data-target="500"></h2><h2>+</span>
-            </div>
-          </div>
-          <div class="cardpro crad_achievements">
-            <img src="imges/Group 7817.png" alt="" data-tilt data-tilt-scale="1.1">
-            <h3 > عدد المتطوعين</h3>
-            <div class="con">
-              <h2  class="counter" data-target="4500"></h2><h2>+</span>
-            </div>
-           
-
-          </div>
+          @endforeach
+         @endif
 
         </div>
 
@@ -268,32 +148,21 @@
     <section class="comp_section">
       <div class="containerr">
         <div class="textnews">
-          <h1> الشــركـــاء</h1>
+          <h1>{{__('dashboard.partners')}}</h1>
         </div>
 
         <div class="arow3">
           <div class="swiper mySwiper3">
             <div class="swiper-wrapper ">
-              <div class="swiper-slide">
-                <div class="card_comp">
-                  <img src="imges/Group 3671.png" alt="">
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card_comp">
-                  <img src="imges/Group 3673.png" alt="">
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card_comp">
-                  <img src="imges/Group 3677.png" alt="">
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="card_comp">
-                  <img src="imges/Group 3679.png" alt="">
-                </div>
-              </div>
+              @if(!empty($partners))
+                @foreach($partners as $partner)
+                  <div class="swiper-slide">
+                    <div class="card_comp">
+                      <img src="{{url('/storage2/'.$partner->images)}}" alt="">
+                    </div>
+                  </div>
+                  @endforeach
+              @endif  
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -312,28 +181,4 @@
 
       </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
- 
 @endsection

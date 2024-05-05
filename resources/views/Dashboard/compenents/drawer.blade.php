@@ -1,10 +1,11 @@
- 		 
-				<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+<div class="drawer">
+
+<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
 					<!--begin::Brand-->
 					<div class="aside-logo flex-column-auto" id="kt_aside_logo">
 						<!--begin::Logo-->
-						<a href="../../demo1/dist/index.html">
-							<img alt="Logo" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
+						<a href="{{route('home')}}">
+							<img alt="Logo" src="assets/media/logos/Group-8541.png" class="h-25px logo" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Aside toggler-->
@@ -41,7 +42,7 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Dashboards</span>
+										<span class="menu-title">{{ __('dashboard.dashboard') }}</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -50,7 +51,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">home</span>
+												<span class="menu-title">{{__('dashboard.home')}}</span>
 											</a>
 										</div>
 									</div>
@@ -68,7 +69,7 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">setting</span>
+										<span class="menu-title">{{__('dashboard.setting')}}</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -77,7 +78,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">association</span>
+												<span class="menu-title">{{__('dashboard.association')}}</span>
 											</a>
 										</div>
 									</div>
@@ -87,7 +88,17 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">goals</span>
+												<span class="menu-title">{{__('dashboard.goals')}}</span>
+											</a>
+										</div>
+									</div>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link" href="{{route('vision.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">{{__('dashboard.vision')}}</span>
 											</a>
 										</div>
 									</div>
@@ -97,7 +108,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">messags</span>
+												<span class="menu-title">{{__('dashboard.messags')}}</span>
 											</a>
 										</div>
 									</div>
@@ -107,7 +118,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">home</span>
+												<span class="menu-title">{{__('dashboard.home')}}</span>
 											</a>
 										</div>
 									</div>
@@ -117,12 +128,59 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">valuesPrinciples</span>
+												<span class="menu-title">{{__('dashboard.valuesPrinciples')}}</span>
 											</a>
 										</div>
 									</div>
 									
+									<span class="menu-link">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
+													<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="black" />
+													<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="black" />
+													<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
+												</svg>
+											</span>
+											<!--end::Svg Icon-->
+										</span>
+										<span class="menu-title">{{__('dashboard.rolesAndPermission')}}</span>
+										<span class="menu-arrow"></span>
+									</span>
+ 										
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link" href="{{route('roles.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">{{__('dashboard.roles')}}</span>
+											</a>
+										</div>
+									</div>
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link" href="{{route('permissions.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">{{__('dashboard.permissions')}}</span>
+											</a>
+										</div>
+									</div>
 									
+									<div class="menu-sub menu-sub-accordion menu-active-bg">
+										<div class="menu-item">
+											<a class="menu-link" href="{{route('users.index')}}">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">{{__('dashboard.users')}}</span>
+											</a>
+										</div>
+									</div>
 									
 								</div>
 								<div class="menu-item">
@@ -143,7 +201,7 @@
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Pages</span>
+										<span class="menu-title">{{ __('dashboard.Pages')}}</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -155,7 +213,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">news</span>
+												<span class="menu-title">{{__('dashboard.news')}}</span>
 											</a>
 										</div>	
 										<div class="menu-item">
@@ -163,7 +221,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">achievements</span>
+												<span class="menu-title">{{__('dashboard.achievements')}}</span>
 											</a>
 										</div>
 
@@ -172,7 +230,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">partners</span>
+												<span class="menu-title">{{__('dashboard.partners')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -180,7 +238,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">publications And Reports</span>
+												<span class="menu-title">{{__('dashboard.publications_and_Reports')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -188,7 +246,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">visual libraries</span>
+												<span class="menu-title">{{__('dashboard.visual_libraries')}}</span>
 											</a>
 										</div>
 										 
@@ -197,7 +255,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">donors</span>
+												<span class="menu-title">{{__('dashboard.donors')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -205,7 +263,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">companies</span>
+												<span class="menu-title">{{__('dashboard.companies')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -213,7 +271,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">employmentsOrders</span>
+												<span class="menu-title">{{__('dashboard.employmentsOrders')}}</span>
 											</a>
 										</div>
 
@@ -223,7 +281,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">slider</span>
+												<span class="menu-title">{{__('dashboard.slider')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -231,7 +289,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">volunteers</span>
+												<span class="menu-title">{{__('dashboard.volunteers')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -239,7 +297,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">programs</span>
+												<span class="menu-title">{{__('dashboard.programs')}}</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -247,7 +305,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">contact us</span>
+												<span class="menu-title">{{__('dashboard.contact_us')}}</span>
 											</a>
 										</div>
 									</div>
@@ -268,6 +326,6 @@
 					<!--end::Footer-->
 				</div>
 				<!--end::Aside-->
-			 
+				</div>
 			<!--end::Page-->
  

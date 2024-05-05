@@ -22,17 +22,34 @@ class StoreAchievementsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $selectedLanguage = $this->input('language', 'en');
+        $role_en =   
+        [
             'title'=>'required', 
             'image'=>'required',  
             'count'=>'required|integer',  
         ];
+        $role_ar =   
+        [
+            'title_ar'=>'required', 
+            'image'=>'required',  
+            'count'=>'required|integer',  
+        ];
+        if($selectedLanguage == "ar"){
+                
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
     }
 
     public  function getData()
     {
         $data=$this->validated();
-        if ($this->hasFile('image')) 
+        $data['language'] = $this->input('language', 'en');
+         if ($this->hasFile('image')) 
         {
             $path = 'uploads/images/achievements/';
             $nameImage = time()+rand(1,10000000).'.'. $this->file('image')->getClientOriginalExtension();

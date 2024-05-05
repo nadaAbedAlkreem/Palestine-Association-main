@@ -49,7 +49,10 @@
                                                         @if(!empty($setting))
                                                           
                                                            @foreach($setting as $item)
-                                                            @if (strpos($item->key, "image")) 
+
+                                                          @if($CurrentLang ==$item->language || $item->language == null)
+
+                                                            @if ($item->type_field == "image") 
                                                             <label class="form-label card-body pt-0">{{$item->key}}</label>
                                                             <div class="card-body pt-0">
                                                             
@@ -75,13 +78,13 @@
                                                                             <!--end::Remove-->
                                                              </div>	
                                                            </div>	
-                                                            @elseif( $item->key=="goals" || $item->key=="goals_ar" || $item->key=="values_principles"  || $item->key=="values_principles_ar" )
+                                                            @elseif( $item->type_field == "textarea" )
                                                                         <div class="card-body pt-0">
                                                                                 <label class="form-label">{{$item->key}}</label>
-                                                                                <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{!! $item->value !!}" class="form-control required" ></textarea>
+                                                                                <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{{ $item->value }}" class="form-control required" >{{ $item->value }}</textarea>
                                                                      </div>
                                                        
-                                                            @else 
+                                                            @elseif( $item->type_field == "input" ) 
                                                                      <div class="card-body pt-0">
                                                                                 <label class="form-label">{{$item->key}}</label>
                                                                                 <input type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{{$item->value}}" class="form-control required"  />
@@ -90,6 +93,7 @@
 
                                                             @endif
  
+                                                            @endif
 
                                                            @endforeach
 

@@ -1,31 +1,26 @@
-@extends('Auth.layout.app')
+@extends('Dashboard.Auth.layout.app')
 
 @section('content_auth')
 
 	<body id="kt_body" class="bg-body">
-		<!--begin::Main-->
-		<!--begin::Root-->
+ 
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
 				<!--begin::Aside-->
-				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
+				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #c2c3ff">
 					<!--begin::Wrapper-->
 					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="../../demo1/dist/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="assets/media/logos/logo-2.svg" class="h-60px" />
+								<img alt="Logo" src="assets/media/logos/Group-8541.png" class="h-60px" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Metronic</h1>
-							<!--end::Title-->
-							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Discover Amazing Metronic
-							<br />with great build tools</p>
-							<!--end::Description-->
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #000000;">Welcome to   {{__('dashboard.Palestine_Educational_Society_for_Environmental_Protection')}} </h1>
+			 
 						</div>
 						<!--end::Content-->
 						<!--begin::Illustration-->
@@ -42,7 +37,7 @@
 						<!--begin::Wrapper-->
 						<div class="w-lg-500px p-10 p-lg-15 mx-auto">
 							<!--begin::Form-->
-							<form class="form w-100"    action = "{{route('login.action')}}"  method = "post" id="kt_sign_in_form">
+							<form class="form w-100" action = "{{route('login.action')}}"  method = "post" id="kt_sign_in_form">
 							  @csrf
 							<!--begin::Heading-->
 								<div class="text-center mb-10">
@@ -90,22 +85,7 @@
 										<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
-									<!--end::Submit button-->
-									<!--begin::Separator-->
-									<div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
-									<!--end::Separator-->
-									<!--begin::Google link-->
-									<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-									<img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continue with Google</a>
-									<!--end::Google link-->
-									<!--begin::Google link-->
-									<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-									<img alt="Logo" src="assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-3" />Continue with Facebook</a>
-									<!--end::Google link-->
-									<!--begin::Google link-->
-									<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
-									<img alt="Logo" src="assets/media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a>
-									<!--end::Google link-->
+									 
 								</div>
 								<!--end::Actions-->
 							</form>
@@ -139,7 +119,7 @@
 		<script src="assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<!-- <script src="assets/js/custom/authentication/sign-in/general.js"></script> -->
+		<script src="assets/js/custom/authentication/sign-in/general.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

@@ -49,15 +49,25 @@
                                                         @if(!empty($setting))
                                                           
                                                            @foreach($setting as $item)
-                                                           
-                                                                         <div class="card-body pt-0">
-                                                                                <label class="form-label">{{$item->key}}</label>
-                                                                                <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{!! $item->value !!}" class="form-control required" ></textarea>
-                                                                     </div>
-                                             
+                                                           @if($CurrentLang ==$item->language || $item->language == null)
+                                                            @if ($item->type_field =="textarea")
+                                                               
+                                                               <div class="card-body pt-0">
+                                                                       <label class="form-label">{{$item->key}}</label>
+                                                                       <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "  $item->value " class="form-control required" >{{$item->value}} </textarea>
+                                                            </div>
+                                              
+                                                             @elseif($item->type_field == "input" ) 
+                                                            <div class="card-body pt-0">
+                                                                       <label class="form-label">{{$item->key}}</label>
+                                                                       <input type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{{$item->value}}" class="form-control required"  />
+                                                            </div>
+                                                                     
+                                                            @endif         
 
   
 
+                                                                     @endif
                                                            @endforeach
 
                                                         @endif

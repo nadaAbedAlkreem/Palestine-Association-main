@@ -18,6 +18,10 @@ class VolunteersController extends Controller
         {
             $data = Volunteers::select('*') ; 
             return DataTables::of($data)
+            ->addColumn('cv_volunteer' , function($data){
+                return '<td><a href="' . route('download', ["file"=>$data->cv_volunteer]) . '"   class="btn btn-outline-success">   <i class="fas fa-download"></i> Download</a></td>';
+                })
+            ->rawColumns(['cv_volunteer'])
             ->addIndexColumn()
             ->make(true); 
         }    

@@ -43,7 +43,7 @@ class AchievementsDatatableService extends Controller
                       })
 
                    
-                      ->addColumn('title' , function ($data){
+                      ->addColumn('title_ar' , function ($data){
                         $nameImage = $data->image; 
                          $url=asset("/storage2/$nameImage");
 
@@ -56,16 +56,38 @@ class AchievementsDatatableService extends Controller
                             <!--end::Thumbnail-->
                             <div class="ms-5">
                                 <!--begin::Title-->
-                                <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->title.'</a>
+                                <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->title_ar.'</a>
                                 <!--end::Title-->
                             </div>
                         </div>
               
                    ' ;
-                   })  
+                   }) 
+                   ->addColumn('title' , function ($data){
+                    $nameImage = $data->image; 
+                     $url=asset("/storage2/$nameImage");
+
+                    return ' 
+                    <div class="d-flex align-items-center">
+                        <!--begin::Thumbnail-->
+                        <a href="" class="symbol symbol-50px">
+                            <span class="symbol-label" style="background-image:url('.$url.');"></span>
+                        </a>
+                        <!--end::Thumbnail-->
+                        <div class="ms-5">
+                            <!--begin::Title-->
+                            <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->title.'</a>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+          
+               ' ;
+               }) 
+           
+                    
                    
                
-                    ->rawColumns([ 'action'  , 'title' ])
+                    ->rawColumns([ 'action'  , 'title_ar'   , 'title'])
                     ->make(true); 
            
     }

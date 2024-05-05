@@ -1,61 +1,70 @@
 @extends('webApplication.layouts.app')
 
 @section('web_content')
-   
+ 
 
-<link rel="stylesheet" href="{{url('css/contact_us.css')}}" />
-
-
-<div class="containerr">
+    <div class="containerr">
         <section class="hedsid" >
-             <h6><a href="index.html">الرئسية / </a></h6><h6>   تواصل معنا   </h6>
+             <h6><a href="index.html">{{__('dashboard.home')}} / </a></h6><h6>  {{__('dashboard.contact_us')}}   </h6>
         </section>
-        <section class="about">
-            <h1>   اتصل بنا </h1>
-
+        <section class="aboutt">
+            <h1>{{__('dashboard.contact_us')}} </h1>
+          <form id="contactUsForm">
+          @csrf
             <div class="body_cotact">
-              <form id="contactUsForm" >
-                @csrf
                 <div class="right_contact">
                      <div class="input_name">
-                      
-                        <input type="text"  name="full_name" placeholder="الاسم كامل">
-                        <input type="text" name="email" placeholder="البريد الالكتروني">
+                        <input type="text" name="full_name" placeholder="{{__('columns.full_name')}}">
+                        <input type="text" name="email" placeholder="{{__('columns.email')}}">
                      </div>
-                     <textarea name="message"  cols="30" rows="10" placeholder="رسالتك"></textarea>
+                     <textarea  id="message" name="message" cols="30" rows="10" placeholder="{{__('columns.message')}}"></textarea>
                      <div class="checkbox_text">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <p>أوافق على سياسة الخصوصية</p>
+                        <p> {{__('dashboard.privacy_policy')}}</p>
                      </div>
-                     <button   type="submit" class="btn_donate"> إرسال</button>
-               </form>      
-                     
+                     <button class="btn_donate">{{__('button.send')}}</button>
+                  </form>
+
 
                 </div>
                 <div class="left_contact">
-                    <h1>معلومات التواصل</h1>
+                    <h1>{{__('dashboard.contact_us')}}</h1>
                     <div class="line_contant"></div>
 
                     <div class="icon_text_contact">
                         <div class="imgd">
-                            <img src="imges/Group 7904.png" alt="">
+                            <img src="{{url('imges/Group 7904.png')}}" alt="">
                         </div>
-                      
-                        <p>972-592616000+</p>  
-                    </div>
+                        @foreach($setting as $settings) 
+                          @if($settings->key == "mobile") 
+                            <p> {{$settings->value}} </p>
+                          @endif  
+                         @endforeach                   
+                   </div>
                     <div class="icon_text_contact">
                         <div class="imgd">
-                            <img src="imges/Group 7903.png" alt="">
+                            <img src="{{url('imges/Group 7903.png')}}" alt="">
                         </div>
-                        <p>admin@paeep.ps</p>  
-                    </div>
+                        @foreach($setting as $settings) 
+                          @if($settings->key == "gmail") 
+                            <p> {{$settings->value}} </p>
+                          @endif  
+                         @endforeach                       </div>
                     <div class="icon_text_contact">
                         <div class="imgd">
-                            <img src="imges/Path 5860.png" alt="">
+                            <img src="{{url('imges/Path 5860.png')}}" alt="">
                         </div>
-                        <p>غزة-فلسطين-الرمال-شارع عمرو بن العاص<br>
-                            مقابل مدرسة المامونية خلف معلب<br>
-                            فلسطين</p>  
+                        @foreach($setting as $settings)
+                        @if($CurrentLang == "ar")
+                          @if($settings->key == "loaction_ar")
+                          <p> {{$settings->value}} </p>
+                          @endif 
+                        @else   
+                          @if($settings->key == "loaction") 
+                          <p> {{$settings->value}} </p>
+                          @endif 
+                        @endif 
+                        @endforeach
                     </div>
                     
                     <div class="alliconbt">
@@ -96,7 +105,9 @@
 
         </section>
     </div>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+ 
+
+
 
     <script type="text/javascript">
                            $('#contactUsForm').on('submit',function(e)
@@ -109,7 +120,7 @@
                                     $.ajaxSetup({
                                     headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                            } });
+                                            }});
                                     $.ajax(
                                     {
                                     type:"POST",
@@ -186,5 +197,7 @@
                            </script>     
 
 
-
-@endsection
+<!-- 
+    <script src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="{{url('js/main.js')}}"></script> -->
+    @endsection

@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+ 
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->String('title') ; 
+            $table->String('title')->nullable() ; 
             $table->String('date') ; 
-            $table->String('description') ; 
-            $table->String('location') ; 
-            $table->String('title_ar') ;
-            $table->String('location_ar') ; 
+            $table->text('description')->nullable() ; 
+            $table->text('description_ar')->nullable() ; 
+            $table->String('location')->nullable() ; 
+            $table->String('title_ar')->nullable() ;
+            $table->String('location_ar')->nullable() ; 
+            $table->enum('language', ['ar', 'en']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 

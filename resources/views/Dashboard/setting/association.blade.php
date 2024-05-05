@@ -3,16 +3,14 @@
 @section('content')
  
 
- 
-
-                                                      
+                                              
       
-     
     
 <div class="post d-flex flex-column-fluid" id="kt_post">
                             <!--begin::Container-->
                             <div id="kt_content_container" class="container-xxl">
                                 <!--begin::Form-->
+                                
                                 <form id="setting_update_form"  enctype="multipart/form-data" class="form d-flex " data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/products.html">
                                     <!--begin::Aside column-->
                                     @csrf
@@ -49,8 +47,13 @@
                                                         @if(!empty($setting))
                                                           
                                                            @foreach($setting as $item)
-                                                            @if (strpos($item->key, "image")) 
-                                                            <label class="form-label card-body pt-0">{{$item->key}}</label>
+
+                                                      
+                                                           @if($CurrentLang ==$item->language || $item->language == null)
+
+       
+                                                            @if ($item->type_field == "image") 
+                                                             <label class="form-label card-body pt-0">{{$item->key}}</label>
                                                             <div class="card-body pt-0">
                                                             
                                                             <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url(storage2/{{$item->value}})">
@@ -73,23 +76,29 @@
                                                                                 <i class="bi bi-x fs-2"></i>
                                                                             </span>
                                                                             <!--end::Remove-->
-                                                             </div>	
-                                                           </div>	
-                                                            @elseif( $item->key=="goals" || $item->key=="goals_ar" || $item->key=="values_principles"  || $item->key=="values_principles_ar" )
-                                                                        <div class="card-body pt-0">
+                                                                        </div>	
+                                                                    </div>	
+                                                            @elseif( $item->type_field =="textarea" )
+ 
+                                                            <div class="card-body pt-0">
                                                                                 <label class="form-label">{{$item->key}}</label>
-                                                                                <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{!! $item->value !!}" class="form-control required" ></textarea>
-                                                                     </div>
+                                                                                 <textarea type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{!! $item->value !!}" class="form-control required" >{!! $item->value !!}</textarea>
+                                                                       </div>
+
+                                                                     
                                                        
-                                                            @else 
-                                                                     <div class="card-body pt-0">
+                                                            @elseif( $item->type_field =="input" ) 
+
+                                                                      <div class="card-body pt-0">
                                                                                 <label class="form-label">{{$item->key}}</label>
                                                                                 <input type="text"  id = "{{$item->key}}" name="{{$item->key}}" value = "{{$item->value}}" class="form-control required"  />
                                                                      </div>
+                                                                    
 
 
                                                             @endif
  
+                                                            @endif
 
                                                            @endforeach
 

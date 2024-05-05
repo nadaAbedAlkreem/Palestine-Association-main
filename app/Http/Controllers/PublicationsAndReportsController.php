@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePublicationsAndReportsRequest;
 use App\Services\PublicationsAndReportsDatatableService ; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App  ; 
 class PublicationsAndReportsController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class PublicationsAndReportsController extends Controller
     {
         if ($request->ajax()) 
         {
-            $data = PublicationsAndReports::select('*') ;
+            $data = PublicationsAndReports::select('*')->where('language' , App::getlocale()) ;
             
             try {
                 return $publicationsAndReportsDatatableService->handle($request,$data);
@@ -27,7 +28,7 @@ class PublicationsAndReportsController extends Controller
                 ], 500);
             }
         }
-       return view('Dashboard.PublicationAndReports.index');
+       return view('Dashboard.PublicationAndReports.index' , ['CurrentLang'=> App::getLocale()]);
     }
 
     /**
@@ -35,9 +36,10 @@ class PublicationsAndReportsController extends Controller
      */
     public function create()
     {
-       return view('Dashboard.PublicationAndReports.create') ; 
+        
+       return view('Dashboard.PublicationAndReports.create' , ['CurrentLang'=> App::getLocale()]) ; 
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      */
@@ -62,7 +64,7 @@ class PublicationsAndReportsController extends Controller
     public function edit($id)
     {
         $publication = PublicationsAndReports::where('id' , $id)->first(); 
-        return view('Dashboard.PublicationAndReports.edit' , ['publication' => $publication]) ; 
+        return view('Dashboard.PublicationAndReports.edit' , ['publication' => $publication ,'CurrentLang'=> App::getLocale()]) ; 
     } 
 
     /**

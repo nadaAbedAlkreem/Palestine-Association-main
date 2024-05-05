@@ -1,4 +1,4 @@
-@extends('Auth.layout.app')
+@extends('Dashboard.Auth.layout.app')
 
 @section('content_auth')
 	<body id="kt_body" class="bg-body">

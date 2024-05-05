@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-
+ 
 
 
 class StoreSliderRequest extends FormRequest
@@ -25,14 +25,12 @@ class StoreSliderRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'title'=>'required', 
-            'title_ar'=>'required',  
-            'description'=>'required', 
-            'description_ar' =>'required', 
+        $selectedLanguage = $this->input('language', 'en');
+        $rules =
+         [
             'rediract_to'=>'' , 
-            'text_button' =>   ' ' ,
-    
+            'text_button' => '' ,
+            'news_id'=>'' , 
             'image' =>'required'  , 
             'active'=>'' , 
             'publication_start'=>'required' , 
@@ -41,19 +39,49 @@ class StoreSliderRequest extends FormRequest
                 if ($value <= $start) {
                     $fail('The ' . $attribute . ' must be strictly after the publication start date.');
                 }
-            }, // Ensure end date is after start date (without being equal)            , 
+            }, // Ensure end date is after start date (without being equal)       
         ];
-        if ($this->input('rediract_to') !== null) {
-            $rules['text_button'] = 'required';
-        }
-        return $rules;
+            if ($this->input('rediract_to') == "show_description")
+            {
+                $rules['news_id'] = 'required';
+            }
+            if ($this->input('rediract_to') !== null) {
+                $rules['text_button'] = 'required';
+            }
+           $rules_en = 
+           [
+               'title'=>'required', 
+              'description'=>'required', 
+           ];
+           $rules_ar =
+           [    
+                 'title_ar'=>'required',  
+                  'description_ar' =>'required',                 
+           ];
+          $rules_en += $rules ;    
+          $rules_ar += $rules ;     
+        
+      
+        if($selectedLanguage== "en" )
+        {
+            return $rules_en ; 
 
+        }else
+        {
+           return $rules_ar ; 
+
+        }
+
+
+ 
     }
 
 
     public function getData()
     {
           $data=$this->validated();
+          $data['language'] =  $this->input('language', 'en');
+
           if ($this->hasFile('image')) 
           {
               $path = 'uploads/images/slider/';

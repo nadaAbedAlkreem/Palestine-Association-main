@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UpdateSliderRequest extends FormRequest
 {
@@ -21,15 +23,12 @@ class UpdateSliderRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'id' => 'required' , 
-            'title'=>'required', 
-            'title_ar'=>'required',  
-            'description'=>'required', 
-            'description_ar' =>'required', 
+        $selectedLanguage = $this->input('language', 'en');
+        $rules =
+         [
             'rediract_to'=>'' , 
-            'text_button' =>   ' ' ,
-    
+            'text_button' => '' ,
+            'news_id'=>'' , 
             'image' =>''  , 
             'active'=>'' , 
             'publication_start'=>'required' , 
@@ -38,11 +37,37 @@ class UpdateSliderRequest extends FormRequest
                 if ($value <= $start) {
                     $fail('The ' . $attribute . ' must be strictly after the publication start date.');
                 }
-            }, // Ensure end date is after start date (without being equal)            , 
+            }, // Ensure end date is after start date (without being equal)       
         ];
-        if ($this->input('rediract_to') !== null) {
-            $rules['text_button'] = 'required';
+           
+            if ($this->input('rediract_to') !== null) {
+                $rules['text_button'] = 'required';
+            }
+           $rules_en = 
+           [
+              'title'=>'required', 
+              'description'=>'required', 
+           ];
+           $rules_ar =
+           [    
+                'title_ar'=>'required',  
+                'description_ar' =>'required',                 
+           ];
+                $rules_en += $rules ;    
+                $rules_ar += $rules ;     
+        
+      
+        if($selectedLanguage== "en" )
+        {
+            return $rules_en ; 
+
+        }else
+        {
+           return $rules_ar ; 
+
         }
+
+
         return $rules;
 
     }

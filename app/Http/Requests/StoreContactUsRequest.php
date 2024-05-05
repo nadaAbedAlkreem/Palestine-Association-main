@@ -27,6 +27,12 @@ class StoreContactUsRequest extends FormRequest
             'message'=> 'required' , 
         ];
     }
+    public function getData()
+    {
+ 
+        $data=$this->validated();  
+        return $data;
+    }
 
 
 }

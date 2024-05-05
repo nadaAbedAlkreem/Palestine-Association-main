@@ -3,7 +3,7 @@
 .allcardspiblicationsss{
     display: flex;
     gap: 20px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     flex-wrap: wrap;
     margin-top: 20px;

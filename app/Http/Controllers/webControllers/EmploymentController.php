@@ -21,8 +21,8 @@ class EmploymentController extends Controller
     
             if($request['number_page']==1)
             {
-            $create_employment= EmploymentsOrders::create($this->getData($request->all()));
-            return $create_employment ? parent::successResponse() :  parent::errorResponse(); 
+             $create_employment= EmploymentsOrders::create($this->getData($request->all()));
+             return $create_employment ? parent::successResponse() :  parent::errorResponse(); 
         }
         }
         public  function validate1($request)

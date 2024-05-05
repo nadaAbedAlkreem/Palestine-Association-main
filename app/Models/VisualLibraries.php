@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Model\Images; 
+use App\Models\Images; 
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -17,10 +17,11 @@ class VisualLibraries extends Model
         'description',  
         'title_ar'   , 
         'description_ar' , 
-        'image'
+        'image' , 
+        'language'
    
 ];
-public function images(): MorphMany
+public function images()
 {
     return $this->morphMany(Images::class, 'parentable');
 }

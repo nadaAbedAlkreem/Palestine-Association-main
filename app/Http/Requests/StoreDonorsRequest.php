@@ -48,11 +48,15 @@ class StoreDonorsRequest extends FormRequest
     public function getData()
     {
         $data=$this->validated();
+        $data['language'] = $selectedLanguage  ;
+
          if($this['defaultCheck2'] == 1)
         {
              $data['money']  = $this['add_money']  ; 
 
         }
+
+        
  
         return $data;
     }

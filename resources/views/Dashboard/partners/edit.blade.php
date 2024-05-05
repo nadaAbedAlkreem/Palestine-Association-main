@@ -19,7 +19,7 @@
 																	 
 																	<div class="card-body" >
 																	<div class="card-body pt-0">
-																	<label class="form-label">image</label>
+																	<label class="form-label">{{__('columns.image')}}</label>
 
 																		<div class="card-body pt-0">
 
@@ -75,25 +75,28 @@
 																<div class="card-body">
 
  																			<section>
-																			
-																			<div class="control-group form-group">
-																			<label class="form-label">name</label>
-																			<input type="text" value="{{$partners->name}}" id = "name" name="name" class="form-control required" placeholder="name">
-																			</div> 
-																		 
-																			<div class="control-group form-group">
-																			<label class="form-label">name ar</label>
-																			<input type="text" value="{{$partners->name_ar}}" id = "name_ar" name="name_ar" class="form-control required" placeholder="name">
-																			</div> 
-																		 
-																		 
+																			 <input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">
+ 
+																			@if($CurrentLang == "en")
 
-																 
+																			<div class="control-group form-group">
+																			<label class="form-label">{{__('columns.name')}}</label>
+																			<input type="text" value="{{$partners->name}}" id = "name" name="name" class="form-control required" placeholder="{{__('columns.name')}}">
+																			</div> 
+
+																			@else
+																		 
+																			<div class="control-group form-group">
+																			<label class="form-label">{{__('columns.name')}}</label>
+																			<input type="text" value="{{$partners->name_ar}}" id = "name_ar" name="name_ar" class="form-control required" placeholder="{{__('columns.name')}}">
+																			</div> 
+
+																			@endif
  																		</section>
 																		</div>
 																	</div>
                                                                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                                                            <span class="indicator-label">Save Changes</span>
+                                                                            <span class="indicator-label">{{__('button.Save')}}</span>
                                                                             <span class="indicator-progress">Please wait...
                                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                    </button>
@@ -112,7 +115,7 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+				<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
  
 		<!--end::Global Javascript Bundle-->

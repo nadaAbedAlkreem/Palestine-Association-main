@@ -69,6 +69,7 @@ var KTSigninGeneral = function() {
                                       var email = $('#email').val() ;
                                       var password = $('#password').val() ;
                                       var token = $("meta[name='csrf-token']").attr("content");
+ 
                                       console.log(email);
                                        $.ajax({
                                           url: "login",
@@ -79,11 +80,13 @@ var KTSigninGeneral = function() {
                                                       password:password,
                                                      "_token": token,
                   
-                                                  },
+                                                   },
                                                   success:function(response){
                                                       $('#successMsg').show();
-                                                      console.log(response.message);
-                                                      console.log("response");
+                                                      var jsonData = response.responseJSON  ;
+
+                                                      console.log(response);
+                                                      console.log("nada here ");
                                                           
                                                       if(response.status)
                                                       {
@@ -94,7 +97,7 @@ var KTSigninGeneral = function() {
                                                       {
                                                           Swal.fire(
                                                               {
-                                                                  text:  response.message,
+                                                                  text:  response,
                                                                   icon: "error",
                                                                   buttonsStyling: false,
                                                                   confirmButtonText: "Ok, got it!",
@@ -110,7 +113,10 @@ var KTSigninGeneral = function() {
                                                   {
                                                               var jsonData = response;
                                                               console.log(jsonData);
-                                                  
+ 
+                                                              console.log("jsonData");
+
+                            
                                                               Swal.fire(
                                                                   {
                                                                       text:  "The value must be entered correctly"  , 

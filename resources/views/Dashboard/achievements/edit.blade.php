@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('Dashboard.layout.app')
 
 @section('content')
    
@@ -18,12 +18,12 @@
 														<div class="card-header">
 																	<!--begin::Card title-->
 																	<div class="card-title">
-																		<h2>images</h2>
+																		<h2>{{__('columns.images')}}</h2>
 																	</div>
 																	<div class="card-body" >
 																	<div class="card-body pt-0">
                                                     <!--begin::Select2-->
-												              	<label class="form-label">image</label>
+												              	<label class="form-label">{{__('columns.images')}}</label>
 
 																	<div class="card-body pt-0">
 
@@ -79,14 +79,26 @@
 																<div class="card-body">
 
  																			<section>
-																		
+																			<input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">
+																			<input type="hidden"  id = "id" name="id" >
+																			@if($CurrentLang == "en")
 																			<div class="control-group form-group">
-																			<label class="form-label">title</label>
-																			<input type="text"  id = "title" name="title" value="{{$achievements->title}}" class="form-control required" placeholder="title">
+																			<label class="form-label">{{__('columns.title')}}</label>
+																			<input type="text"  id = "title" name="title" value="{{$achievements->title}}" class="form-control required" placeholder="{{__('columns.title')}}">
 																			</div> 
+																			@else
 																			<div class="control-group form-group">
- 																			<label class="form-label">count</label>
-																			<input type="text"  id = "count" name="count" value="{{$achievements->count}}" class="form-control required" placeholder="count">
+																			<label class="form-label">{{__('columns.title')}}</label>
+																			<input type="text"  id = "title_ar" name="title_ar" value="{{$achievements->title_ar}}" class="form-control required" placeholder="{{__('columns.title')}}">
+																			</div> 
+
+
+																			@endif
+
+																			 
+																			<div class="control-group form-group">
+ 																			<label class="form-label">{{__('columns.count')}}</label>
+																			<input type="text"  id = "count" name="count" value="{{$achievements->count}}" class="form-control required" placeholder="{{__('columns.count')}}">
 																			<input type="hidden" name="id" class="form-control mb-2" placeholder="id" value="{{$achievements->id}}" />
 	
 																		</div> 
@@ -99,7 +111,7 @@
 																		</div>
 																	</div>
                                                                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                                                            <span class="indicator-label">Save Changes</span>
+                                                                            <span class="indicator-label">{{__('button.Save')}}</span>
                                                                             <span class="indicator-progress">Please wait...
                                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                    </button>
@@ -119,7 +131,7 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+		<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
  
 		<!--end::Global Javascript Bundle-->
@@ -189,7 +201,7 @@
                                 console.log("response");
                                 Swal.fire(
                                     {
-                                            text:  response.responseJSON.message  , 
+                                            text:  "A mistake in entering: You entered an incorrect value in one of the fields"  , 
                                             icon: "error",
                                             buttonsStyling: false,
                                             confirmButtonText: "Ok, got it!",

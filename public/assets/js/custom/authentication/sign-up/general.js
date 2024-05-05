@@ -76,8 +76,9 @@ function(){
                                                         },
                                                         error: function(response ) 
                                                         {
-                                                        var jsonData = response.errors;
-                                            
+                                                            var jsonData = response.responseJSON.errors.email  ;
+                                                            console.log(jsonData);
+                                             
                                                          Swal.fire({
                                                             text: jsonData,
                                                             icon: "error",

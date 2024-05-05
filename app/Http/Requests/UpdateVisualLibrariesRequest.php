@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateVisualLibrariesRequest extends FormRequest
 {
@@ -21,14 +22,30 @@ class UpdateVisualLibrariesRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'required' , 
+         
+
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar =  [
             'title_ar' => 'required' , 
-            'description' => 'required' , 
             'description_ar' =>'required' , 
-            'image' => 'required',
+            'image' => '',
             'images' => ''
-        ];
+       ];
+        $role_en = [
+            'title' => 'required' , 
+            'description' => 'required' , 
+            'image' => '',
+            'images' => ''
+       ];
+
+        if($selectedLanguage == "ar"){
+        
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
     }
      public function getData()
       {

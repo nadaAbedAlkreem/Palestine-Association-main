@@ -22,23 +22,38 @@ class UpdateAchievementsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $selectedLanguage = $this->input('language', 'en');
+        $role_en =   
+        [
             'title'=>'required', 
-            'image'=>'',  
-            'count'=>'required',  
+             'count'=>'required|numeric',  
         ];
+        $role_ar =   
+        [
+            'title_ar'=>'required', 
+             'count'=>'required|numeric',  
+        ];
+        if($selectedLanguage == "ar"){
+                
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
     }
 
     public  function getData()
     {
         $data=$this->validated();
-        if ($this->hasFile('image')) 
+         if ($this->hasFile('image')) 
         {
             $path = 'uploads/images/achievements/';
             $nameImage = time()+rand(1,10000000).'.'. $this->file('image')->getClientOriginalExtension();
             Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('image') ));
+           
             $data['image'] = $path.$nameImage ;
-        }
+         }
         return $data;
     }
 }

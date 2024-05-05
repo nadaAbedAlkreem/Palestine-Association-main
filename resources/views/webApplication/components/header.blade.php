@@ -13,63 +13,63 @@
               <div class="areasearcheee">
                 <div class="inputser">
                   <i class='bx bx-search searchnon'></i>
-                  <input type="text" placeholder="ابحث هنا">
+                  <input type="text" placeholder="{{__('setting.search')}}">
                 </div>
             </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">الصفحة الرئسية</a>
+              <a class="nav-link active" aria-current="page" href="{{route('web.home')}}">{{__('dashboard.home')}}</a>
             </li>
             <li class="nav-item dropdown  ">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">   من نحن</a>
+                aria-expanded="false">{{__('setting.about_us')}}</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="about-association.html">من نحن</a></li>
+                  <li><a class="dropdown-item" href="{{route('about_us.index')}}">{{__('setting.about_us')}}</a></li>
 
-                  <li><a class="dropdown-item" href="principles.html">  مبادئنا وقيمنا</a></li>
+                  <li><a class="dropdown-item" href="{{route('principles.index')}}">{{__('dashboard.valuesPrinciples')}}</a></li>
  
-                  <li><a class="dropdown-item" href="objectives.html">   أهدافنا</a></li>
+                  <li><a class="dropdown-item" href="{{route('goales.index')}}">{{__('dashboard.goals')}}</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                المصادر 
-              </a>
+                aria-expanded="false">{{__('setting.resources')}}
+               </a>
               <ul class="dropdown-menu ">
-                <li><a class="dropdown-item" href="publications_and_reports.html">  الاصدارات والتقارير</a></li>
-                <li><a class="dropdown-item" href="visual_library.html">المكتبة المرئية</a></li>
+                <li><a class="dropdown-item" href="{{route('publicationsAndReport.all')}}">{{__('dashboard.publications_and_Reports')}}</a></li>
+                <li><a class="dropdown-item" href="{{route('visualLibraries.all')}}">{{__('dashboard.visual_libraries')}}</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="news.html">الأخبار والإعلانات</a>
+              <a class="nav-link " href="{{route('news.all')}}">{{__('setting.News_and_advertisements')}}</a>
             </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">انضم إلينا</a>
+                aria-expanded="false">{{__('setting.join_us')}}</a>
 
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="volunteerrequest.html">طلب تطوع</a></li>
+                  <li><a class="dropdown-item" href="{{route('volunteer.home')}}">{{__('setting.Volunteer_order')}}</a></li>
           
-                  <li><a class="dropdown-item" href="jobrequest.html">طلب توظيف</a></li>
+                  <li><a class="dropdown-item" href="{{route('employment.home')}}">{{__('setting.Employment_order')}} </a></li>
            
-                  <li><a class="dropdown-item" href="companyrequest.html"> بناء الشركة</a></li>
+                  <li><a class="dropdown-item" href="{{route('company.home')}}">{{__('setting.Building_a_company')}}</a></li>
                 </ul>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link " href="contact_us.html">تواصل معنا</a>
+              <a class="nav-link " href="{{route('contactUs.home')}}">{{__('dashboard.contact_us')}}</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false"> {{ LaravelLocalization::getCurrentLocaleName() }}</a>
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-
-                <ul class="dropdown-menu">
-                  <li>	<a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="menu-link d-flex px-5 ">
-													   {{ $properties['native'] }}</a></li>
-                </ul>
+                 @if( LaravelLocalization::getCurrentLocaleName() !=  $properties['native'] )
+                  <ul class="dropdown-menu ">
+                    <li>	<a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="menu-link d-flex px-5 ">
+                              {{ $properties['native'] }}</a></li>
+                  </ul>
+                 @endif               
                 @endforeach
             </li>
           </ul>
@@ -78,23 +78,25 @@
        
 
           <div class="btns">
+          <form method="get" action="{{route('news.search') }}">
+
             <div class="btnserch">
               <i class='bx bx-search' id="search"></i>
-
               <div>
                 <div class="areasearch">
                   <div class="inputser">
                     <i class='bx bx-search searchnon' ></i>
-                    <input type="text" placeholder="ابحث هنا">
+                    <input type="text" name ="search"  placeholder="{{__('setting.search')}}">
                   </div>
                 </div>
               </div>
               
             </div>
+          </form>  
             <div class="btn_search">
-              <a href="donate.html">
+              <a href="{{route('donation.home')}}">
                 <div class="btnnow">
-                  <h6>تبرع الان</h6>
+                  <h6>{{__('setting.donate_now')}}</h6>
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.062" height="29.898" viewBox="0 0 32.062 29.898">
                     <defs>
                       <clipPath id="clip-path">

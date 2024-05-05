@@ -13,7 +13,8 @@ class Achievements extends Model
         'image',
         'title', 
         'title_ar', 
-        'count',  
+        'count', 
+        'language' 
   
 
   

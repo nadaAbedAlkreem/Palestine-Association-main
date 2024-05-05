@@ -10,7 +10,7 @@ use App\Services\ProgramsDatatableService ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Images;  
-
+use App ; 
 class ProgramsController extends Controller
 {
     /**
@@ -20,7 +20,7 @@ class ProgramsController extends Controller
     {
         if ($request->ajax()) 
         {
-            $data = Programs::select('*') ;
+            $data = Programs::select('*')->where('language' , App::getLocale()) ;
             
             try {
                 return $programsDatatableService->handle($request,$data);
@@ -38,7 +38,7 @@ class ProgramsController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.programs.create') ; 
+        return view('Dashboard.programs.create' , ["CurrentLang"=>App::getLocale()]) ; 
 
     }
 
@@ -65,7 +65,7 @@ class ProgramsController extends Controller
     public function edit($id)
     {
         $programs = Programs::where('id' , $id)->first(); 
-        return view('Dashboard.programs.edit' , ['programs' => $programs]) ; 
+        return view('Dashboard.programs.edit' , ['programs' => $programs  , "CurrentLang"=>App::getLocale()]) ; 
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('webApplication.layouts.app')
 
 @section('web_content')
-   
+
 
 <body>
     <div class="container">
@@ -14,12 +14,12 @@
                         
                     </div>
                     <div class="steps-content">
-                        <h3><span class="step-number">  </span>المعلومات الاساسية </h3>
+                        <h3><span class="step-number">  </span> {{__('columns.Basic_Information')}} </h3>
                
                     </div>
                     <ul class="progress-bar">
-                        <li class="active">المعلومات الاساسية</li>
-                        <li>معلومت اضافية</li>
+                        <li class="active">{{__('columns.Basic_Information')}}</li>
+                        <li> {{__('columns.additional_information')}}</li>
                       
                     </ul> 
                 </div>
@@ -27,31 +27,30 @@
                 <div class="right-side">
                 <form id ="SubmitFormEmployemnt">
                     @csrf
-           
 
+                 
                     <div class="main active">
                             <div class="text">
-                                <!-- <h2>{{ trans('website-requests.job-req') }}</h2>
-                                <p>{{ trans('website-requests.fill_data') }}</p> -->
+                              
                             </div>
                             <div class="input-text">
                                 <div class="input-div">
                                     <input type="text" id="first_name" name="first_name"
-                                    placeholder="الاسم الاول" >
+                                    placeholder="{{__('columns.first_name')}}" >
                                 </div>
                                 <div class="input-div">
                                     <input type="text" id="father_name" name="father_name"
-                                        placeholder="father_name"  >
+                                        placeholder="{{__('columns.father_name')}}"  >
                                 </div>
                             </div>
                             <div class="input-text">
                             <div class="input-div">
-                                 <input type="text" name="grandfather_name"      placeholder="اسم الجد">
+                                 <input type="text" name="grandfather_name"      placeholder="{{__('columns.grandfather_name')}}">
  
                              </div>
 
                              <div class="input-div"> 
-                                 <input type="text"   name="family_name"    placeholder="اسم العائلة">
+                                 <input type="text"   name="family_name"    placeholder="{{__('columns.family_name')}}">
                              </div>
 
                             </div>
@@ -61,22 +60,22 @@
                                         placeholder="mobile" >
                                 </div>
                                 <div class="input-div ">
-                                    <input type="text" id="email"   name="email"    placeholder="البريد الالكتروني">
+                                    <input type="text" id="email"   name="email"    placeholder="{{__('columns.gmail')}}">
                                 </div>
                             </div>
                             <div class="input-text" style="margin-bottom: 10px">
                                 <div >
-                                    <span> gender</span>
+                                    <span>{{__('columns.gender')}}</span>
                                     <div class="input-div" style="top: 10px">
                                         <select style="font-family: 'Cairo', sans-serif;" id="gender" name="gender">
-                                            <option value="male" >male</option>
-                                            <option value="female" >female</option>
+                                            <option value="male" >{{__('columns.male')}}</option>
+                                            <option value="female" >{{__('columnsfemale')}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div style="width: 50%">
                                     <span> </span>
-                                    <div class="input-div" style="top: 10px">
+                                    <div class="input-div" style="top: 30px">
                                         <select style="font-family: 'Cairo', sans-serif;" id="qualification"
                                             name="qualification">
                                             <option value="bachelor"> bachelor </option>
@@ -91,45 +90,45 @@
                             </div>
                             <div class="buttons" style="text-align: left; margin-top:20px;">
                                 <button type="button"
-                                    class="next_button" > website-requests.next_one</button>
+                                    class="next_button" > {{__('columns.next')}}</button>
                             </div>
                         </div>
                         <div class="main">
                             <div class="text">
-                                <h2> website-requests.additional_info </h2>
-                                <p> website-requests.fill_data </p>
+                                <h2> {{__('columns.additional_information')}} </h2>
+                                <p>  {{__('columns.fill_out')}}  </p>
                             </div>
                             <div class="input-text">
                                 <div class="input-div">
                                     <input type="date" name="Birthday" id="Birthday">
-                                    <span> website-requests.birthday </span>
+                                    <span>{{__('columns.Birthday')}}</span>
                                 </div>
                             </div>
-                            <span> website-requests.cv </span>
+                            <span> {{__('columns.cv')}} </span>
                             <div class="input-text" style="margin-top: 5px;">
                                 <div class="input-div fileinput">
                                     <input type="file" name="cv" id="cv">
                                 </div>
                             </div>
                             <div class="buttons button_space">
-                                <button class="back_button">website-requests.back</button>
-                               <button type="button"  class="next_button">website-requests.next_one</button>
-                                </div>
+                            <button type="button" class="back_button">{{__('columns.back')}}</button>
+                            <button type="button" class="next_button">{{__('columns.register')}}</button>
+                        </div>
+
+                        
                         </div>
                     
                     </form>
-
 
                     <div class="main">
                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                             <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
                             <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                         </svg>
-
                         <div class="text congrats">
-                            <h2>تم الطلب بنجاح</h2>
-                            <p>شكرا لك <span class="shown_name"></span>تم إرسال معلوماتك بنجاح.</p>
-                        </div>
+                                    <h2>{{__('columns.successfully')}}</h2>
+                                    <p>{{__('columns.thank_you')}}<span class="shown_name"></span>{{__('columns.done')}}</p>
+                                </div>
                     </div>
 
 
@@ -141,11 +140,10 @@
  
     </div>
 
-  
-    <script src="{{url('js/jobrequest.js')}}"></script>
+<script src="{{url('js/jobrequest.js')}}"></script>
 <script defer src="{{url('js/jquery library.js')}}"></script>
-<script defer src="{{url('js/bootstrap.min.js')}}"></script>
-<script defer src="{{url('js/main.js')}}"></script>
+<!-- <script defer src="{{url('js/bootstrap.min.js')}}"></script>
+<script defer src="{{url('js/main.js')}}"></script> -->
 </body>
 
  

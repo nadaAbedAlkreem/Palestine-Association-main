@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDonorsRequest;
 use App\Http\Requests\UpdateDonorsRequest;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App ; 
 
 class DonorsController extends Controller
 {
@@ -15,11 +16,28 @@ class DonorsController extends Controller
      */
     public function index(Request $request)
     {
+ 
+
         if ($request->ajax()) 
         {
-            $data = Donors::select('*') ; 
-            return DataTables::of($data)
+            $donors= Donors::with('programs')->select('*') ; 
+
+            return DataTables::of($donors)
             ->addIndexColumn()
+            ->addColumn('project' , function ($data){
+                if(!empty($data->programs[0]))
+                {
+                    $title_name_lang  = ($data->programs[0]->language  == "en" ) ? "title" : "title_ar"  ; 
+                    return   $data->programs[0][$title_name_lang] ?? ""  ;
+
+                }
+             
+           })  
+           ->addColumn('announcing_donor' , function ($data){
+        
+            return    ($data->announcing_donor == 1) ? "Yes"  : "No"   ;
+          })  
+            ->rawColumns([ 'project'   , 'announcing_donor' ])
             ->make(true); 
         }    
         return view('Dashboard.donors.index');
@@ -33,6 +51,8 @@ class DonorsController extends Controller
         //
     }
 
+
+    
     /**
      * Store a newly created resource in storage.
      */

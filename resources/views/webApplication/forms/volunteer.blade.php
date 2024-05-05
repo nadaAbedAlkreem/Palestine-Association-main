@@ -3,6 +3,7 @@
 @section('web_content')
    
 
+
 <body>
     <div class="container">
 
@@ -14,12 +15,12 @@
                         
                     </div>
                     <div class="steps-content">
-                        <h3><span class="step-number">  </span>المعلومات الاساسية </h3>
+                        <h3><span class="step-number"> {{__('columns.Basic_Information')}} </span>  </h3>
                
                     </div>
                     <ul class="progress-bar">
-                        <li class="active">المعلومات الاساسية</li>
-                        <li>معلومت اضافية</li>
+                        <li class="active">{{__('columns.Basic_Information')}}</li>
+                        <li> {{__('columns.additional_information')}}</li>
                       
                     </ul> 
                 </div>
@@ -31,36 +32,36 @@
                     <div class="main active">
 
                         <div class="text">
-                            <h2 style="font-weight: bold;">طلب التطوع</h2>
-                            <p>الرجاء تعبئة البيانات</p>
+                            <h2 style="font-weight: bold;">{{__('setting.Volunteer_order')}}</h2>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" required require  name ="name" id="user_name" placeholder=" الاسم كامل">
+                                <input type="text" required require  name ="name" id="user_name" placeholder="{{__('columns.full_name')}}">
 
                             </div>
                             <div class="input-div">
-                                <input type="number" name="mobile" required "  
-                                    placeholder="رقم الموبايل">
+                                <input type="number" name="mobile"   
+                                    placeholder="{{__('columns.mobile')}}">
 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text"  name="email" required require id="user_name" placeholder="البريد الالكتروني">
+                                <input type="text"  name="email" required require id="user_name" placeholder="{{__('columns.email')}}">
 
                             </div>
                             <div class="input-div">
-                                <input name="address" type="text" required  placeholder="العنوان بالتفصيل">
+                                <input name="address" type="text" required  placeholder="{{__('columns.address')}}">
 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
                                 <select  name="volunteered">
-                                    <option selected hidden>هل تطوعت من قبل؟</option>
-                                    <option value = "1" >نعم</option>
-                                    <option value= "0" >لا</option>
+                                    <option selected hidden>{{__('columns.volunteered_before')}}</option>
+                                    <option value = "1" >{{__('columns.yes')}}</option>
+                                    <option value= "0" >{{__('columns.no')}}</option>
                                 </select>
 
                             </div>
@@ -69,27 +70,27 @@
                         <div class="input-text">
 
                             <div class="input-div">
-                                <input type="text"  name="volunteered_place" required require  placeholder="اذا نعم اذكر بختصار">
+                                <input type="text"  name="volunteered_place" required require  placeholder="{{__('columns.if_yes')}}">
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
 
                                 <select  name="skills">
-                                    <option  selected hidden>هل لديك أي مهارات أو صفات معينة يمكنك استخدامها في عملك التطوعي؟ </option>
-                                    <option value = "1">نعم</option>
-                                    <option  value ="0">لا</option>
+                                    <option  selected hidden>{{__('columns.specific_skills')}}</option>
+                                    <option value = "1" >{{__('columns.yes')}}</option>
+                                    <option value= "0" >{{__('columns.no')}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="input-text">
 
                             <div class="input-div">
-                                <input type="text" name="volunteer_skills" required require  placeholder="اذكر تطوعك بختصار">
+                                <input type="text" name="volunteer_skills" required require  placeholder="{{__('columns.if_yes')}}">
                             </div>
                         </div>
                         <div class="buttons" >
-                            <button class="next_button">التالي</button>
+                            <button class="next_button">{{__('columns.next')}}</button>
                         </div>
 
 
@@ -97,8 +98,8 @@
                     <div class="main">
 
                         <div class="text">
-                            <h2>معلومات اضافية</h2>
-                            <p>الرجاء ادخال البيانات</p>
+                            <h2>{{__('columns.additional_information')}}</h2>
+                            <p>{{__('columns.fill_out')}} </p> 
                         </div>
 
 
@@ -106,33 +107,33 @@
                         <div class="input-text">
                             <div class="input-div">
                                 <input type="date"  name="beginning_volunteering">
-                                <span>بداية التطوع</span>
+                                <span>{{__('columns.beginning_volunteering')}}</span>
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
                                 <input type="date" name="end_volunteering" >
-                                <span>نهاية التطوع</span>
+                                <span>{{__('columns.end_volunteering')}}</span>
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
                                 <input type="text" name="study_experience_volunteer"   require id="user_name"
                                     style="height: 93px;">
-                                <span>الخبرة الدراسية</span>
+                                <span>{{__('columns.study_experience_volunteer')}}</span>
                             </div>
 
                         </div>
                         <div class="input-text">
                             <div class="input-div fileinput">
                                 <input type="file" name="cv_volunteer" >
-                                <span>السيرة الذاتية</span>
+                                <span>{{__('columns.cv_volunteer')}}</span>
                             </div>
                         </div>
 
                         <div class="buttons button_space">
-                            <button class="back_button">الرجوع</button>
-                            <button class="next_button">تسجيل</button>
+                            <button class="back_button">{{__('columns.back')}}</button>
+                            <button class="next_button">{{__('columns.register')}}</button>
                         </div>
                     </div>
                     </form>
@@ -145,9 +146,9 @@
                         </svg>
 
                         <div class="text congrats">
-                            <h2>تم الطلب بنجاح</h2>
-                            <p>شكرا لك <span class="shown_name"></span>تم إرسال معلوماتك بنجاح.</p>
-                        </div>
+                                    <h2>{{__('columns.successfully')}}</h2>
+                                    <p>{{__('columns.thank_you')}}<span class="shown_name"></span>{{__('columns.done')}}</p>
+                                </div>
                     </div>
 
 
@@ -161,9 +162,9 @@
 
   
     <script src="{{url('js/volunteerrequest.js')}}"></script>
-<script defer src="{{url('js/jquery library.js')}}"></script>
-<script defer src="{{url('js/bootstrap.min.js')}}"></script>
-<script defer src="{{url('js/main.js')}}"></script>
+<script defer src="{{url('js/jquery_library.js')}}"></script>
+<!-- <script defer src="{{url('js/bootstrap.min.js')}}"></script>
+<script defer src="{{url('js/main.js')}}"></script> -->
 </body>
 
  

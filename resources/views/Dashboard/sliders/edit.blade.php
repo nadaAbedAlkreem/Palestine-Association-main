@@ -9,8 +9,10 @@
                             <!--begin::Container-->
                             <div id="kt_content_container" class="container-xxl">
 											 		<form id="SubmitFormUpdateSlider"  class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/products.html"  enctype="multipart/form-data">
- 											           @csrf		 	
-											 		<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+ 											           @csrf	
+														<input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">	 	
+														<input type="hidden" id="id"  value = "{{$slider->id}}" name="id">
+													   <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
 
 														<div class="card card-flush py-4">
 														<!--begin::Card header-->
@@ -18,28 +20,36 @@
 																	 
 																	<div class="card-body" >
 																	<div class="card-body pt-0">
-                                                    <!--begin::Select2-->
-																<div class="control-group form-group">
-																	<label class="form-label">rediract to</label>
+															    	<!--begin::Select2-->
+																  <div class="control-group form-group">
+																	<label class="form-label">{{__('columns.redirect_to')}}</label>
 
 																	<select class="form-select mb-2"   name="rediract_to" id="rediract_to">
 																	<option ></option>
                                                                        @if($slider->rediract_to == "contact_us")
 																		<option value="contact_us" selected>contact us</option>
-																	    @else 
+																		@else 
 																		<option value="contact_us" >contact us</option>
-
 																		@endif
+																	    @if($slider->rediract_to == "show_description") 
+																		<option value="show_description" selected>show description</option>
+                                                                        @else 
+ 																		@endif
  
 																	</select>
                                                                    </div>
+																   <div class="control-group form-group"  id="newsInputContainer">
+																		<label>news </label>
+																		<select class="itemNews form-control"    id='itemNews'  style="width: 200px"  name="news_id"></select>
+ 
+																	</div>
 																   <div class="control-group form-group">
-																			<label class="form-label">text_button</label>
+																			<label class="form-label">{{__('columns.text_button')}}</label>
 																			<input type="text"  id = "text_button" name="text_button" value="{{$slider->text_button}}"  class="form-control required"  />
 																</div>  
 																   
 																   <div class="control-group form-group">
-																	<div class="form-check form-switch">
+																	<div class="form-check form-switch" style="margin-top: 10px">
 																		<label class="form-check-label" for="flexSwitchCheckDefault">active</label>
 																		<input class="form-check-input" type="checkbox" role="switch" value="{{$slider->active}}"  name ="active" id="active">
 																	</div>
@@ -75,7 +85,7 @@
 																<div class="card-body">
 
  																			<section>
-																			 <label class="form-label">image</label>
+																			 <label class="form-label">{{__('columns.image')}}</label>
 
 																			 <div class="card-body pt-0">
  
@@ -101,34 +111,36 @@
                                                                             <!--end::Remove-->
                                                              </div>	
                                                            </div>
+														                    
+														                     @if($CurrentLang == "en")
 																			<div class="control-group form-group">
-																			<label class="form-label">title</label>
+																			<label class="form-label">{{__('columns.title')}}</label>
 																			<input type="text"  id = "title" name="title" value ="{{$slider->title}}" class="form-control required" placeholder="title">
 																			</div> 
 																			<div class="control-group form-group">
-																			<input type="hidden" id="id"  value = "{{$slider->id}}" name="id">
-																			<label class="form-label">title ar</label>
+																			<label class="form-label">{{__('columns.description')}}</label>
+																			<textarea  type="text"  id = "description" name="description"    class="form-control required" >{{  $slider->description }}</textarea>
+																			</div> 
+																			@else
+																			
+																			<div class="control-group form-group">
+																			<label class="form-label">{{__('columns.title')}}</label>
 																			<input type="text"  id = "title_ar" name="title_ar" value = "{{$slider->title_ar}}" class="form-control required" placeholder="title_ar">
 																			</div> 
-
+														
 																			<div class="control-group form-group">
-																			<label class="form-label">description</label>
-																			<textarea  type="text"  id = "description" name="description"   class="form-control required" >{!!  $slider->description !!}</textarea>
-																					
+																			<label class="form-label">{{__('columns.description')}}</label>
+																			<textarea    id = "description_ar" name="description_ar"   class="form-control required" >{{  $slider->description_ar }}</textarea>
 																			</div> 
-																			<div class="control-group form-group">
-																			<label class="form-label">description ar</label>
-																			<textarea    id = "description_ar" name="description_ar"   class="form-control required" >{!!  $slider->description_ar !!}</textarea>
-																					
-																			</div> 
+																			@endif
 						 
 																		  
 																			<div class="control-group form-group">
-																			<label class="form-label">publication start</label>
+																			<label class="form-label">{{__('columns.publication_start')}}</label>
 																			<input type="datetime-local" value="{{$slider->publication_start}}" id = "publication_start" name="publication_start"   class="form-control required"  />
 																			</div> 
 																			<div class="control-group form-group">
-																			<label class="form-label">publication end</label>
+																			<label class="form-label">{{__('columns.publication_end')}}</label>
 																			<input  type="datetime-local"  value="{{$slider->publication_end}}" id = "publication_end" name="publication_end"   class="form-control required"  />
 
 																			</div> 
@@ -137,7 +149,7 @@
 																		</div>
 																	</div>
                                                                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                                                            <span class="indicator-label">Save Changes</span>
+                                                                            <span class="indicator-label">{{__('button.Update')}}</span>
                                                                             <span class="indicator-progress">Please wait...
                                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                    </button>
@@ -156,7 +168,7 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+				<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
  
 		<!--end::Global Javascript Bundle-->
@@ -164,91 +176,118 @@
 		<script src="{{url('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
- 		<script src="{{url('assets/js/widgets.bundle.js')}}"></script>
-		<script src="{{url('assets/js/custom/widgets.js')}}"></script>
-		<script src="{{url('assets/js/custom/apps/chat/chat.js')}}"></script>
-		<script src="{{url('assets/js/custom/utilities/modals/users-search.js')}}"></script>
-        @push('scripts')
-		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-		<script>
-            flatpickr("input[type=datetime-local]", {
-                enableTime: true, // Enable time selection
-                dateFormat: "Y-m-d h:i K", // Format with AM/PM indicator
-            });		
-       </script>
-    	@endpush
+ 
      		<!-- in this page  -->
 
 		<script  type= text/javascript>
-         
-			 $('#SubmitFormUpdateSlider').on('submit',function(e)
-            {      
-                    e.preventDefault();
-             
+		 	hideInputNews();
+		 	searchNewsData();
+		 	updateSliderAction();
+			function hideInputNews()
+			 {
+ 				$('#rediract_to').on('change', function() 
+					{
+						// Get the selected value
+							var selectedValue = $(this).val();
 
-                    let formData = new FormData($('#SubmitFormUpdateSlider')[0]);
-					var description = document.getElementById("description");
-					var description_ar = document.getElementById("description_ar");
-					console.log(tinymce.get("description").getContent());
-					  
-					  formData.append('description', tinymce.get("description").getContent());
-					  formData.append('description_ar', tinymce.get("description_ar").getContent());
+							// Check if the selected value is 'show_description'
+							if (selectedValue === 'show_description') {
+								// Show the input for 'news'
+								$('#newsInputContainer').show();
+							} else {
+								// Hide the input for 'news'
+								$('#newsInputContainer').hide();
+							}
+					});
+			 }
+			 function searchNewsData()
+			 {
+				$('.itemNews').select2(
+				{
+					placeholder: 'Select an item',
+					ajax: {
+						url: '/select2-autocomplete-ajax-news',
+						dataType: 'json',
+						delay: 250,
+						processResults: function (data) {
+						return {
+							results:  $.map(data, function (item) {
+								return {
+									text: (item.language === "en")? item.title :  item.title_ar ,
+									id: item.id
+								}
+ 							})
+						};
+						},
+						// cache: true
+					}
+				});
+			 }
+			 function updateSliderAction()
+			 {
+				$('#SubmitFormUpdateSlider').on('submit',function(e)
+				{      
+						e.preventDefault();
+				
+
+						let formData = new FormData($('#SubmitFormUpdateSlider')[0]);
+				 
+						
+				
+						$.ajaxSetup({
+						headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+								}});
+						$.ajax(
+						{
+								type:"POST",
+								url: "slider/update",
+								data:formData,
+								contentType:false, // determint type object 
+								processData: false,  // processing on response 
+								success:function(response)
+								{
+								$('#successMsg').show();
+								console.log(response);
+								Swal.fire({
+									text: "You have successfully reset your password!",
+									icon: "success",
+									buttonsStyling: false,
+									confirmButtonText: "Ok, got it!",
+									customClass: 
+									{
+										confirmButton: "btn btn-primary"
+									}
+								})
+
+								
+									},
+							
+								error: function(response) 
+								{
+
+									console.log(response);
+									console.log("response");
+									Swal.fire(
+										{
+												text:  response.responseJSON.message  , 
+												icon: "error",
+												buttonsStyling: false,
+												confirmButtonText: "Ok, got it!",
+													customClass: {
+														confirmButton: "btn btn-primary"
+
+														}
+											})
+									
+								},
+						});
 
 
-
-                    
-            
-                    $.ajaxSetup({
-                    headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }});
-                    $.ajax(
-                    {
-                            type:"POST",
-                            url: "slider/update",
-                            data:formData,
-                            contentType:false, // determint type object 
-                            processData: false,  // processing on response 
-                            success:function(response)
-                            {
-                            $('#successMsg').show();
-                            console.log(response);
-                            Swal.fire({
-                                text: "You have successfully reset your password!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: 
-                                {
-                                    confirmButton: "btn btn-primary"
-                                }
-                               })
-
-                            
-                                },
-                        
-                            error: function(response) 
-                            {
-
-                                console.log(response);
-                                console.log("response");
-                                Swal.fire(
-                                    {
-                                            text:  response.responseJSON.message  , 
-                                            icon: "error",
-                                            buttonsStyling: false,
-                                            confirmButtonText: "Ok, got it!",
-                                                customClass: {
-                                                    confirmButton: "btn btn-primary"
-
-                                                    }
-                                        })
-                                 
-                            },
-                    });
+				}); 
+			 }
 
 
-            }); 
   
 
 		</script>

@@ -57,12 +57,7 @@ function updateform(){
 } 
  
 function progress_forward(){
-    // step_list.forEach(list => {
-        
-    //     list.classList.remove('active');
-         
-    // }); 
-    
+ 
      
     num.innerHTML = formnumber+1;
     step_list[formnumber].classList.add('active');

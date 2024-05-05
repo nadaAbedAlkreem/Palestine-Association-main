@@ -1,39 +1,33 @@
 @extends('webApplication.layouts.app')
 
 @section('web_content')
-<link rel="stylesheet" href="{{url('css/en/style.ltr.css')}}">
-    <link rel="stylesheet" href="{{url('css/en/donate.ltr.css')}}" />
-    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{url('build/css/intlTelInput.min.css')}}">
-    <link rel="stylesheet" href="{{url('build/css/demo.css')}}">
 
 
 <div class="containerr">
     <section class="hedsid" >
-         <h6><a href="index.html">الرئسية / </a></h6><h6>  تبرع الان </h6>
+    <h6><a href="{{route('web.home')}}">{{__('dashboard.home')}} /  </a></h6><h6> {{__('setting.donate_now')}} </h6>
     </section>
 
     <section class="aboutt">
-        <h1> تبرع الان </h1>
+        <h1>  {{__('setting.donate_now')}} </h1>
 
         <form class="body_donate" id="formStoreDonores">
             <div class="right_donate">
               @csrf
-                <h2>تفاصيل المتبرع</h2>
+                <h2>{{__('columns.Donor_details')}}</h2>
                 <div class="blowline"></div>
             
                 <div class="input_donate">
-                    <input name="name"   type="text" placeholder="اسم المتبرع">
-                    <input  name="email" type="email" placeholder="البريد الالكتروني">
+                    <input name="name"   type="text" placeholder="{{__('columns.full_name')}}">
+                    <input  name="email" type="email" placeholder="{{__('columns.email')}}">
                 </div>
                 
                 <div class="input_donate">
                   <div class="selectPhone" >
-                    <input  name="mobile" class="inputPhoneI" type="tel" id="phone" placeholder="رقم الهاتف">
+                    <input  name="mobile" class="inputPhoneI" type="tel" id="phone" placeholder="{{__('columns.mobile')}}">
                   </div>
                     <select name="project" class="form-select" aria-label="">
-                    <option selected>اختر المشروع الذي تود التبرع به</option>
+                    <option selected>{{__('columns.Choose_amount_donate')}}</option>
 
                     @if(!empty($programs))
                     @foreach($programs as $value)
@@ -44,22 +38,20 @@
                     </select>
                 </div>
                 <div class="input_donate">
-                    <select type="text" class="form-select" id="country" name="country" placeholder="الدولة">
-                      <option value="">اختر الدولة</option>
+                    <select type="text" class="form-select" id="country" name="country" placeholder="{{__('columns.country')}}">
+                      <option value="">{{__('columns.Select_city')}}</option>
                     </select>
                     <select name="city" id="state" class="form-select" >
-                      <option value="">اختر المدينة</option>
+                      <option value="">{{__('columns.Select_country')}}</option>
                     </select>
                 </div>
                 <div class="input_donate">
-                    <textarea name="message" id="message" cols="30" rows="10" placeholder="رسالتك لنا"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" placeholder="{{__('columns.Your_message_us')}}"></textarea>
                 </div>
                 <div class="inputCheck">
                   <input name="announcing_donor" class="form-check-input" type="checkbox" value="" id="announcing_donor">
                   <label class="form-check-label" for="announcing_donor">
-                    التعريف بالمتبرع
-                    <br>
-                    لا بأس بذكر اسمي في في لوائح الشرف والشكر
+                   {{__('columns.innovator')}}
                   </label>
                 </div>
 
@@ -72,7 +64,7 @@
             <div class="leftdonateForm" >
               <div class="mt-4">
 
-                <label style="font-weight: bold; font-size: 16px;" for="">اختر المبلغ المراد التبرع به</label>
+                <label style="font-weight: bold; font-size: 16px;" for=""> {{__('columns.Choose_amount_donate')}}</label>
 
                 <div class="cardsDonate">
                   <div class="cardDonate active">
@@ -105,8 +97,8 @@
                   <div class="inputCheck anotherAmount">
                     <input class="form-check-input inputCheckA" type="checkbox" value="" name="defaultCheck2" id="defaultCheck2">
                     <label class="form-check-label " for="defaultCheck2">
-                      إضافة مبلغ اخر
-                    </label>
+                    {{__('columns.Add_another_amount')}}
+                  </label>
                   </div>
                 </div>
                 <div class="input_donate">
@@ -120,35 +112,35 @@
 
               <div class="mt-4">
 
-                <h5>طريقة التبرع</h5>
+                <h5> {{__('columns.Donation_method')}}</h5>
 
                 <div class="cardsDonate">
                  
               
                   <div class="cardDonateS">
                     <i class='bx bx-check' active></i>
-                    <img src="images/stripe-purple-300x300.svg" alt="">
+                    <img src="{{url('images/stripe-purple-300x300.svg')}}" alt="">
                   </div>
                 </div>
 
               </div>
 
-              <button type="button" class="btnDonare">تبرع</button>
+              <button type="button" class="btnDonare"> {{__('setting.donate_now')}}</button>
 
 
               <div class="mt-4">
 
-                <h5>موثوق من</h5>
+                <h5>{{__('columns.Trusted_by')}}</h5>
 
                 <div class="imgGC">
-                  <img src="images/masterCardS.svg" alt="">
-                  <img src="images/visaa.svg" alt="">
-                  <img src="images/3d-secure.svg" alt="">
-                  <img src="images/paypal.svg" alt="">
+                  <img src="{{url('images/masterCardS.svg')}}" alt="">
+                  <img src="{{url('images/visaa.svg')}}" alt="">
+                  <img src="{{url('images/3d-secure.svg')}}" alt="">
+                  <img src="{{url('images/paypal.svg')}}" alt="">
                   
                   <div class="d-flex gap-2">
-                    <img class="imgS" src="images/secureCheckOut.svg" alt="">
-                    <img class="imgS" src="images/privacyProtected.svg" alt="">
+                    <img class="imgS" src="{{url('images/secureCheckOut.svg')}}" alt="">
+                    <img class="imgS" src="{{url('images/privacyProtected.svg')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -172,8 +164,13 @@
 </div>
 
 
+ 
 
-<script>
+
+  <script src="{{url('js/jquery_library.js')}}"></script>
+  
+
+  <script  type= text/javascript>
     var input = document.querySelector("#phone");
     window.intlTelInput(input,{});
 
@@ -197,7 +194,7 @@ input.addEventListener('keyup', handleChange);
 
 </script>
 
-  <script>
+  <script  type= text/javascript>
         $(".cardDonate").click(function(){
 
         $(".cardDonate").removeClass("active");
@@ -229,20 +226,15 @@ $(this).addClass("active");
 
 
   </script>
-
-
-  <script src="{{url('css/plugins.bundle.js')}}"></script>
-  <script src="{{url('js/bootstrap.min.js')}}"></script>
+ 
+  <!-- <script src="{{url('js/bootstrap.min.js')}}"></script> -->
   <script src="{{url('js/countrySelect.js')}}"></script>
-  <script src="{{url('js/main.js')}}"></script>
+  <!-- <script src="{{url('js/main.js')}}"></script> -->
   <script src="{{url('build/js/intlTelInput.min.js')}}"></script>
   <script src="{{url('build/js/nationalMode.js')}}"></script>
   <script src="{{url('js/donors.js')}}"></script>
+  @endsection
 
 
 
-
-
-
-
-@endsection
+ 

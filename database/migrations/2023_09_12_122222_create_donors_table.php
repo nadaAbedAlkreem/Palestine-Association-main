@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->String('name');
-             $table->String('email');
+            $table->String('email');
             $table->String('mobile');
-            $table->String('project');
-             $table->String('country');
-             $table->String('city');
-             $table->String('message');
-             $table->boolean('announcing_donor');
+            $table->String('country');
+            $table->String('city');
+            $table->String('message');
+            $table->boolean('announcing_donor');
             $table->integer('money');//Donation method
-            $table->String('donation_method');//Donation method
+            $table->String('donation_method')->default('stripe');//Donation method
+            $table->enum('language', ['ar', 'en']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 

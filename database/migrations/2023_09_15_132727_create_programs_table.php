@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('image'); 
-            $table->string('title'); 
-            $table->string('title_ar'); 
-            $table->string('brief'); 
-            $table->string('brief_ar'); 
-            $table->string('strategic_objective'); 
-            $table->string('strategic_objective_ar'); 
-            $table->string('special_objectives'); 
-            $table->string('special_objectives_ar'); 
-            $table->string('ativities_events'); 
-            $table->string('ativities_events_ar'); 
+            $table->string('title')->nullable(); 
+            $table->string('title_ar')->nullable(); 
+            $table->string('brief')->nullable(); 
+            $table->string('brief_ar')->nullable(); 
+            $table->text('strategic_objective')->nullable(); 
+            $table->text('strategic_objective_ar')->nullable(); 
+            $table->text('special_objectives')->nullable(); 
+            $table->text('special_objectives_ar')->nullable(); 
+            $table->text('ativities_events')->nullable(); 
+            $table->text('ativities_events_ar')->nullable(); 
+            $table->enum('language', ['ar', 'en']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

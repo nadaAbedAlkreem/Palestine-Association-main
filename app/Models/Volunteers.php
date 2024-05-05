@@ -13,17 +13,18 @@ class Volunteers extends Model
     protected $table = "volunteers_orders" ; 
       protected $fillable = [
         'name' ,
-         'mobile' ,
+        'mobile' ,
         'email' ,
         'address',
-         'volunteered' , 
+        'volunteered' , 
         'volunteered_place' , 
-         'skills' , 
+        'skills' , 
         'volunteer_skills' , 
-         'beginning_volunteering' , 
+        'beginning_volunteering' , 
         'end_volunteering' , 
         'study_experience_volunteer' , 
-         'cv_volunteer'
+        'cv_volunteer',
+        'language'
 
 
 

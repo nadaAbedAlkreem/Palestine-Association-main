@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Donors  ;
 
 class Programs extends Model
 {
@@ -21,6 +22,11 @@ class Programs extends Model
         'special_objectives_ar' ,  
         'ativities_events' ,  
         'ativities_events_ar' ,  
+        'language'
   
 ];
+public function donors()
+{
+    return $this->belongsToMany(Donors::class);
+}
 }

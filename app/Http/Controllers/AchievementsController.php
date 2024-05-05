@@ -9,26 +9,30 @@ use Illuminate\Http\Request;
 use App\Services\AchievementsDatatableService ; 
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\App;
+
 class AchievementsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request  , AchievementsDatatableService $AchievementsDatatableService)
+    public function index(Request $request  ,
+     AchievementsDatatableService $AchievementsDatatableService)
     {
         if ($request->ajax()) 
         {
-            $data = Achievements::select('*') ;
-            
-            try {
+            $data = Achievements::select('*')->where('language' , App::getLocale()) ;
+            try
+             {
                 return $AchievementsDatatableService->handle($request,$data);
-            } catch (Throwable $e) {
+             } catch (Throwable $e)
+             {
                 return response([
                     'message' => $e->getMessage(),
                 ], 500);
-            }
+             }
         }
-       return view('Dashboard.achievements.index');
+       return view('Dashboard.achievements.index'  ,  ["CurrentLang"=>App::getLocale()]);
     }
 
     /**
@@ -36,7 +40,7 @@ class AchievementsController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.achievements.create') ; 
+        return view('Dashboard.achievements.create'  ,  ["CurrentLang"=>App::getLocale()]) ; 
 
     }
 
@@ -63,7 +67,7 @@ class AchievementsController extends Controller
     public function edit($id)
     {
         $achievements = Achievements::where('id' , $id)->first(); 
-        return view('Dashboard.achievements.edit' , ['achievements' => $achievements]) ; 
+        return view('Dashboard.achievements.edit' , ['achievements' => $achievements  ,  "CurrentLang"=>App::getLocale()]) ; 
     }
 
     /**

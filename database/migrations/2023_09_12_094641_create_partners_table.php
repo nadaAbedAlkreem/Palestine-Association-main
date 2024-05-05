@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->String('name') ;
-            $table->String('name_ar') ;
+            $table->String('name')->nullable() ;
+            $table->String('name_ar')->nullable() ;
             $table->String('images') ;
+            $table->enum('language', ['ar', 'en']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

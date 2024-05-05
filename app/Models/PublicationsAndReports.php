@@ -14,7 +14,8 @@ class PublicationsAndReports extends Model
         'title', 
         'title_ar',  
         'images'  , 
-        'file' 
+        'file' ,
+        'language'
   
 ];
 

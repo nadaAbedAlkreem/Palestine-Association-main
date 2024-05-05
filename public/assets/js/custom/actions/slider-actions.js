@@ -19,9 +19,72 @@ let myDropzone = new Dropzone("#images", {
 $(document).ready(function($)
 {             
 
+    var columns  = null  ; 
+    var language_datatables = null;
+    var currentUrl = window.location.href;
+    console.log(currentUrl);
+    var parts = currentUrl.split("/");
+    var current_lang = parts[parts.length - 2];
+    console.log(current_lang);
+
+
+    if (current_lang == "ar") 
+    {       
+        language_datatables = {
+            sEmptyTable: "لا يوجد بيانات ",
+            sInfo: "يتم عرض _START_ إلى _END_ من _TOTAL_ من الإدخالات",
+            sInfoEmpty: "عرض 0 إلى 0 من أصل 0 إدخالات",
+            sInfoFiltered: "(تمت التصفية من إجمالي _MAX_ الإدخالات)",
+            sInfoPostFix: "",
+            sInfoThousands: "",
+            sLengthMenu: "إظهار إدخالات _MENU_",
+            sLoadingRecords: "جارٍ التحميل...",
+            sProcessing: "جارٍ المعالجة...",
+            sSearch: "البحث:",
+            sZeroRecords: "لم يتم العثور على سجلات مطابقة",
+            oPaginate: {
+                sFirst: "الأولى",
+                sLast: "الأخير",
+                sNext: "التالي",
+                sPrevious: "السابق",
+            },
+            oAria: {
+                sSortAscending: ": التنشيط لفرز الأعمدة تصاعديًا",
+                sSortDescending: ": التنشيط لفرز الأعمدة تنازليًا",
+            },
+        };
+
+
+        columns =  [ 
+            {data: 'title_ar', name: 'title_ar'},
+            {data: 'description_ar', name: 'description_ar'},
+            {data: 'rediract_to', name: 'rediract_to'},
+            {data: 'text_button', name: 'text_button'},
+            {data: 'news', name: 'news' },
+            {data: 'active', name: 'active'},
+            {data: 'publication_start', name: 'publication_start'},
+            {data: 'publication_end', name: 'publication_end'},
+            {data: 'action', name: 'action'}]     ;
+    }else
+    {
+        columns =  [ 
+            {data: 'title', name: 'title'},
+            {data: 'description', name: 'description'},
+            {data: 'rediract_to', name: 'rediract_to'},
+            {data: 'text_button', name: 'text_button'},
+            {data: 'news', name:'news' },
+            {data: 'active', name: 'active'},
+            {data: 'publication_start', name: 'publication_start'},
+            {data: 'publication_end', name: 'publication_end'},
+            {data: 'action', name: 'action'}]     ; 
+
+
+    }
+
  
             var table = $('.data-table-silder').DataTable(
             {
+                language: language_datatables,
                 processing: true,
                 serverSide: true,
                 ordering: false,
@@ -34,17 +97,7 @@ $(document).ready(function($)
                                     // d.category = $('#category').val()
                                 }
                 },
-                columns: [ 
-                    {data: 'title', name: 'title'},
-                    {data: 'description', name: 'description'},
-                    {data: 'rediract_to', name: 'rediract_to'},
-                    {data: 'text_button', name: 'text_button'},
-                     {data: 'active', name: 'active'},
-                    {data: 'publication_start', name: 'publication_start'},
-                    {data: 'publication_end', name: 'publication_end'},
-                    {data: 'action', name: 'action'},]     
-
-
+                columns: columns  , 
             });
  
            

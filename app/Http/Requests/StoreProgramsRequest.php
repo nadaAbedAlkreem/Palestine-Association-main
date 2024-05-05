@@ -22,23 +22,41 @@ class StoreProgramsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $selectedLanguage = $this->input('language', 'en');
+ 
+        $role_en  =  [
             'image'=>'required', 
             'title'=>'required',  
-            'title_ar'=>'required' ,  
-            'brief'   =>'required' ,
-            'brief_ar' =>'required'  ,  
-            'strategic_objective'    =>'required'  ,  
-            'strategic_objective_ar' =>'required'  ,  
-            'special_objectives'    =>'required',  
-            'special_objectives_ar' =>'required',  
-            'ativities_events'    =>'required',  
-            'ativities_events_ar'=>'required' ,          ];
+             'brief'   =>'required' ,
+             'strategic_objective'    =>'required'  ,  
+             'special_objectives'    =>'required',  
+             'ativities_events'    =>'required' ] ; 
+             $role_ar  =  [
+                'image'=>'required', 
+                 'title_ar'=>'required' ,  
+                 'brief_ar' =>'required'  ,  
+                 'strategic_objective_ar' =>'required'  ,  
+                 'special_objectives_ar' =>'required',  
+                 'ativities_events_ar'=>'required' ,       ];
+    
+
+
+
+            if($selectedLanguage == "ar"){
+                
+                return $role_ar  ; 
+            }else
+            {
+                return $role_en ; 
+            
+            }
+                
     }
 
     public function getData()
     {
-        $data=$this->validated();
+        $data = $this->validated();
+        $data['language'] =  $this->input('language', 'en');
 
         if ($this->hasFile('image')) 
         {

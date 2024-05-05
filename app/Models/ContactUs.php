@@ -13,6 +13,7 @@ class ContactUs extends Model
         'full_name', 
         'email',  
         'message',
-        'read'  
+        'read'  ,
+        'language'
 ];
 }

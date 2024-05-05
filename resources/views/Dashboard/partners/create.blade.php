@@ -12,49 +12,49 @@
  											           @csrf		 	
 											 		<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                                       
-														<div class="card card-flush py-4">
-														<!--begin::Card header-->
-														<div class="card-header">
+														  <div class="card card-flush py-4">
+													         	<!--begin::Card header-->
+																<div class="card-header">
 																	<!--begin::Card title-->
-																	 
-																	<div class="card-body" >
-																	<div class="card-body pt-0">
-																	<label class="form-label">image</label>
+																			<div class="card-title">
+																				<h2>{{__('columns.image')}}</h2>
+																			</div>
+																			<div class="card-body" >
+																				<div class="card-body pt-0">
+																				<!--begin::Select2-->
+																					<label class="form-label">{{__('columns.image')}}</label>
 
-																		<div class="card-body pt-0">
+																						<div class="card-body pt-0">
 
-																		<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url()">
-																		<div class="image-input-wrapper w-100px h-100px"></div>    
-																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-																		<i class="bi bi-pencil-fill fs-7"></i>
-																		<!--begin::Inputs-->
-																		<input type="file" name="images" id = "images"  />
-																		<input type="hidden" name="avatar_remove" />
-																		<!--end::Inputs-->
-																		</label>
-																		<!--end::Label-->
-																		<!--begin::Cancel-->
-																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-																		<i class="bi bi-x fs-2"></i>
-																		</span>
-																		<!--end::Cancel-->
-																		<!--begin::Remove-->
-																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-																		<i class="bi bi-x fs-2"></i>
-																		</span>
-																		<!--end::Remove-->
-																		</div>	
-																		</div>
+																								<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url()">
+																										<div class="image-input-wrapper w-100px h-100px"></div>    
+																											<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+																											<i class="bi bi-pencil-fill fs-7"></i>
+																											<!--begin::Inputs-->
+																											<input type="file" name="image" id = "image"  />
+																											<input type="hidden" name="avatar_remove" />
+																											<!--end::Inputs-->
+																											</label>
+																											<!--end::Label-->
+																											<!--begin::Cancel-->
+																											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+																											<i class="bi bi-x fs-2"></i>
+																											</span>
+																											<!--end::Cancel-->
+																											<!--begin::Remove-->
+																											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+																											<i class="bi bi-x fs-2"></i>
+																											</span>
+																										<!--end::Remove-->
+																										</div>	
+																								</div> 
 
-															        </div>	
-																	</div>  
+																						</div>
+																				</div>  
 
-																</div>
-															</div>
-									
-						
-									   <!--end::Template settings-->
-								   </div>
+															   				</div>
+														    	</div>
+ 								                         </div>
 
 								
 								   <!--end::Aside column-->
@@ -73,21 +73,28 @@
 																<div class="card-body">
 
  																			<section>
-																	 
+																			 <input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">
+																			 @if($CurrentLang == "en")
+																			 <div class="control-group form-group">
+																			<label class="form-label">{{__('columns.name')}}</label>
+																			<input type="text"  id = "name" name="name" class="form-control required" placeholder="{{__('columns.name')}}">
+																			</div> 
+																			@else  
+																			<div class="control-group form-group">
+ 																			<label class="form-label">{{__('columns.name')}}</label>
+																			<input type="text"  id = "name_ar" name="name_ar" class="form-control required" placeholder="{{__('columns.name')}}">
+																			</div> 
+																			@endif
 
-																			<div class="control-group form-group">
-																			<label class="form-label">name</label>
-																			<input  type="text"  id = "name" name="name"   class="form-control required" />
-																			</div> 
-																			<div class="control-group form-group">
-																			<label class="form-label">name ar</label>
-																			<input  type="text"  id = "name_ar" name="name_ar"   class="form-control required" />
-																			</div> 
+													 
+																		 
+						  
+																			
  																		</section>
 																		</div>
 																	</div>
                                                                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                                                            <span class="indicator-label">Save Changes</span>
+                                                                            <span class="indicator-label">{{__('button.Save')}}</span>
                                                                             <span class="indicator-progress">Please wait...
                                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                    </button>
@@ -106,7 +113,7 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+		<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
  
 		<!--end::Global Javascript Bundle-->
@@ -127,76 +134,10 @@
             });		
        </script>
     	@endpush
-		<script src="{{url('assets/js/custom/actions/partners.js')}}"></script>
-
      		<!-- in this page  -->
-<!-- 
-		<script  type= text/javascript>
-         
-			 $('#SubmitFormPublication').on('submit',function(e)
-            {      
-                    e.preventDefault();
-             
 
-                    let formData = new FormData($('#SubmitFormPublication')[0]);
-			 
-                    
-            
-                    $.ajaxSetup({
-                    headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }});
-                    $.ajax(
-                    {
-                            type:"post",
-                            url: "publicationsAndReports",
-                            data:formData,
-                            contentType:false, // determint type object 
-                            processData: false,  // processing on response 
-                            success:function(response)
-                            {
-                            $('#successMsg').show();
-                            console.log(response);
-                            Swal.fire({
-                                text: "You have successfully reset your password!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: 
-                                {
-                                    confirmButton: "btn btn-primary"
-                                }
-                               })
+			 <script src="{{url('assets/js/custom/actions/partners.js')}}"></script>
 
-                            
-                                },
-                        
-                            error: function(response) 
-                            {
-
-                                console.log(response);
-                                console.log("response");
-                                Swal.fire(
-                                    {
-                                            text:  response.responseJSON.message  , 
-                                            icon: "error",
-                                            buttonsStyling: false,
-                                            confirmButtonText: "Ok, got it!",
-                                                customClass: {
-                                                    confirmButton: "btn btn-primary"
-
-                                                    }
-                                        })
-                                 
-                            },
-                    });
-
-
-            }); 
-  
-
-		</script>
-                                          -->
    
  
 @endsection

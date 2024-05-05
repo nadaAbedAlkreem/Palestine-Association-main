@@ -20,8 +20,8 @@ return new class extends Migration
             $table->String('mobile') ; 
             $table->String('email') ; 
             $table->enum('gender' , ['male','female']) ; 
-             $table->enum('qualification' , ['Bachelor','Diploma' , 'CollegeStudent' , 'HighSchool']) ; 
-             $table->timestamp('Birthday') ; 
+            $table->enum('qualification' , ['Bachelor','Diploma' , 'CollegeStudent' , 'HighSchool']) ; 
+            $table->timestamp('Birthday') ; 
             $table->String('cv') ; 
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

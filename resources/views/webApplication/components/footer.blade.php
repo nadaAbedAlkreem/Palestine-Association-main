@@ -5,32 +5,60 @@
 
   <div class="allfooter">
     <div class="rightfooter">
-      <h5>معلومات عنا</h5>
-      <p>تعمل الجمعية على تعزيز مفاهيم حماية البيئة من
-        خلال نشر الوعي البيئي والمشاركة في القضايا البيئية
-        الاتي تتلائم أنشطتنا مه حاجة المجتمع المحلي
-      </p>
+      <h5>{{__('setting.information_us')}}</h5>
+      <?php
+      $data = getDataSetting();
+      $current_lang = $data['CurrentLang'] ; 
+      ?>
+       @foreach($data['settings'] as $setting) 
+        @if($current_lang == "ar")   
+          @if($setting->key == "about_us_ar")
+            <p> {{$setting->value}} </p>
+          @endif 
+        @else   
+          @if($setting->key == "about_us") 
+            <p> {{$setting->value}} </p>
+          @endif  
+        @endif  
+       @endforeach
+
+   
+     
 
       <div>
+        
         <h5>
-          موقعنا
+          {{__('columns.location')}}
         </h5>
-
+      
         <div class="point">
           <div class="imgpoint">
-            <img src="imges/Group 7813.png" alt="">
+            <img src="{{url('imges/Group 7813.png')}}" alt="">
           </div>
-          <p>غزة-فلسطين-الرمال-شارع عمرو بن العاص
-            <br>مقابل مدرسة المامونية خلف معلب 
-            فلسطين</p>
+          @foreach( $data['settings'] as $setting)
+          @if($current_lang == "ar")
+            @if($setting->key == "loaction_ar")
+            <p> {{$setting->value}} </p>
+            @endif 
+          @else   
+            @if($setting->key == "loaction") 
+            <p> {{$setting->value}} </p>
+            @endif 
+          @endif 
+          @endforeach
         </div>
         <div class="point">
           <div class="imgpoint">
-            <img src="imges/Group 9.png" alt="">
+            <img src="{{url('imges/Group 9.png')}}" alt="">
           </div>
-
-          <p>+972-592-616-000</p>
-        </div>
+          @foreach( $data['settings'] as $setting)
+          @if($setting->key == "mobile")
+          <p> {{$setting->value}} </p>
+          @endif   
+          @endforeach
+     
+      
+      </div>
       </div>
 
 
@@ -38,38 +66,35 @@
 
     <div class="leftfooter">
       <div class="ppfoter">
-        <h5>الرئسية</h5>
-        <p><a href="#">البرامج</a></p>
-        <p><a href="#">أبرز الانجازات</a></p>
-        <p><a href="#">الشركات</a></p>
+        <h5>{{__('dashboard.home')}}</h5>
+        <p><a href="#">{{__('dashboard.programs')}}</a></p>
+        <p><a href="#">{{__('setting.Most_notable_achievements')}}</a></p>
+        <p><a href="#">{{__('dashboard.companies')}}</a></p>
       </div>
       <div class="ppfoter">
-        <h5>من نحن</h5>
-        <p><a href="#">نبذة عن الجمعية</a></p>
-        <p><a href="#"> الرؤية</a></p>
-        <p><a href="#">الرسالة</a></p>
-        <p><a href="#">القيم</a></p>
-        <p><a href="#">الأهداف الاستراتيجية</a></p>
-        <p><a href="#">السياسات</a></p>
-        <p><a href="#">هيكلية الجمعية</a></p>
+        <h5>{{__('setting.about_us')}}</h5>
+        <p><a href="{{route('about_us.index')}}">{{__('setting.about_the_association')}} </a></p>
+        <p><a href="{{route('about_us.index')}}">{{__('setting.vision')}}</a></p>
+        <p><a href="{{route('about_us.index')}}">{{__('setting.message')}}</a></p>
+        <p><a href="{{route('principles.index')}}">{{__('setting.value')}}</a></p>
+        <p><a href="{{route('goales.index')}}">{{__('setting.Strategic_objectives')}}</a></p>
+        <p><a href="#">{{__('setting.policies')}}</a></p>
+        <p><a href="{{route('about_us.index')}}">{{__('setting.structure_of_the_association')}}</a></p>
       </div>
       <div class="ppfoter">
-        <h5>المصادر</h5>
-        <p><a href="#">التقارير</a></p>
-        <p><a href="#">الإصدارات </a></p>
-        <p><a href="#">مكتبة الصور</a></p>
-        <h5>الاخبار والاعلانات</h5>
-        <p><a href="#">الاخبار</a></p>
-        <p><a href="#">الإعلانات</a></p>
-      </div>
+        <h5>{{__('setting.resources')}}</h5>
+        <p><a href="{{route('publicationsAndReport.all')}}">{{__('dashboard.publications_and_Reports')}}</a></p>
+        <p><a href="{{route('visualLibraries.all')}}">{{__('dashboard.visual_libraries')}}</a></p>
+        <p><a href="{{route('news.all')}}">{{__('setting.News_and_advertisements')}}</a></p>
+       </div>
       <div class="ppfoter">
-        <h5>إنضم الينا</h5>
-        <p><a href="#">طلبات التوظيف</a></p>
-        <p><a href="#">طلب تطوع </a></p>
-        <p><a href="#">بناء شركة</a></p>
-        <h5> تواصل معنا</h5>
-        <p><a href="#"> اتصل بنا</a></p>
-        <p><a href="#"> معلومات التواصل </a></p>
+        <h5>{{__('setting.join_us')}}</h5>
+        <p><a href="{{route('volunteer.home')}}">{{__('setting.Volunteer_order')}}</a></p>
+        <p><a href="{{route('employment.home')}}">{{__('setting.Employment_order')}}</a></p>
+        <p><a href="{{route('company.home')}}">{{__('setting.Building_a_company')}}</a></p>
+        <h5>{{__('dashboard.contact_us')}}</h5>
+        <p><a href="{{route('contactUs.home')}}"> {{__('dashboard.contact_us')}}</a></p>
+        <p><a href="{{route('about_us.index')}}"> {{__('dashboard.contact_information')}} </a></p>
       </div>
 
     </div>
@@ -79,7 +104,7 @@
 <div class="footerbotn">
   <div class="container ">
     <div class="footerall">
-      <p> جميع الحقوق محفوظة للموقع الإلكتروني جمعية فلسطين لحماية البيئة ©  1443هـ - 2022م </p>
+      <p> </p>
       <div class="alliconbt">
         <a href="#">
           <div class="icon_footericon">

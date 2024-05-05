@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('Dashboard.layout.app')
 
 @section('content')
    
@@ -12,54 +12,49 @@
  											           @csrf		 	
 											 		<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                                       
-														<div class="card card-flush py-4">
-														<!--begin::Card header-->
-														<div class="card-header">
+														  <div class="card card-flush py-4">
+													         	<!--begin::Card header-->
+																<div class="card-header">
 																	<!--begin::Card title-->
-																	<div class="card-title">
-																		<h2>images</h2>
-																	</div>
-																	<div class="card-body" >
-																	<div class="card-body pt-0">
-                                                    <!--begin::Select2-->
-													<label class="form-label">image</label>
+																			<div class="card-title">
+																				<h2>{{__('columns.images')}}</h2>
+																			</div>
+																			<div class="card-body" >
+																				<div class="card-body pt-0">
+																				<!--begin::Select2-->
+																					<label class="form-label">{{__('columns.images')}}</label>
 
-													<div class="card-body pt-0">
+																						<div class="card-body pt-0">
 
-													<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url()">
-													<div class="image-input-wrapper w-100px h-100px"></div>    
-													<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-													<i class="bi bi-pencil-fill fs-7"></i>
-													<!--begin::Inputs-->
-													<input type="file" name="image" id = "image"  />
-													<input type="hidden" name="avatar_remove" />
-													<!--end::Inputs-->
-													</label>
-													<!--end::Label-->
-													<!--begin::Cancel-->
-													<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-													<i class="bi bi-x fs-2"></i>
-													</span>
-													<!--end::Cancel-->
-													<!--begin::Remove-->
-													<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-													<i class="bi bi-x fs-2"></i>
-													</span>
-													<!--end::Remove-->
-													</div>	
-													</div>
+																								<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" style="background-image: url()">
+																										<div class="image-input-wrapper w-100px h-100px"></div>    
+																											<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+																											<i class="bi bi-pencil-fill fs-7"></i>
+																											<!--begin::Inputs-->
+																											<input type="file" name="image" id = "image"  />
+																											<input type="hidden" name="avatar_remove" />
+																											<!--end::Inputs-->
+																											</label>
+																											<!--end::Label-->
+																											<!--begin::Cancel-->
+																											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+																											<i class="bi bi-x fs-2"></i>
+																											</span>
+																											<!--end::Cancel-->
+																											<!--begin::Remove-->
+																											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+																											<i class="bi bi-x fs-2"></i>
+																											</span>
+																										<!--end::Remove-->
+																										</div>	
+																								</div> 
 
-															 </div>
+																						</div>
+																				</div>  
 
-																	
-																	</div>  
-
-																</div>
-															</div>
-									
-						
-									   <!--end::Template settings-->
-								   </div>
+															   				</div>
+														    	</div>
+ 								                         </div>
 
 								
 								   <!--end::Aside column-->
@@ -79,13 +74,23 @@
 
  																			<section>
 																		
-																			<div class="control-group form-group">
-																			<label class="form-label">title</label>
-																			<input type="text"  id = "title" name="title" class="form-control required" placeholder="title">
+																		  	<div class="control-group form-group">
+																		     	<input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">
+
+																				<input type="hidden"  id = "id" name="id" >
+
+																				@if($CurrentLang == "en")
+ 																				<label class="form-label">{{__('columns.title')}}</label>
+																				<input type="text"  id = "title" name="title" class="form-control required" placeholder="{{__('columns.title')}}">
+																			    @else 
+																				<label class="form-label">{{__('columns.title')}}</label>
+																				<input type="text"  id = "title_ar" name="title_ar" class="form-control required" placeholder="{{__('columns.title')}}">
+
+																			    @endif
 																			</div> 
 																			<div class="control-group form-group">
- 																			<label class="form-label">count</label>
-																			<input type="text"  id = "count" name="count" class="form-control required" placeholder="count">
+ 																			<label class="form-label">{{__('columns.count')}}</label>
+																			<input type="text"  id = "count" name="count"  class="form-control required" placeholder="{{__('columns.count')}}">
 																			</div> 
 
 													 
@@ -115,7 +120,7 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+		<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
  
 		<!--end::Global Javascript Bundle-->

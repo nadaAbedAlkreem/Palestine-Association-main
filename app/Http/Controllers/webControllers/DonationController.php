@@ -19,6 +19,8 @@ class DonationController extends Controller
    public function store(StoreDonorsRequest  $request)
    {
     $create_donors= Donors::create($request->getData()); 
+    $programId = $request->input('project');  
+    $create_donors->programs()->attach($programId);
     return $create_donors? parent::successResponse():  parent::errorResponse(); 
    }
 

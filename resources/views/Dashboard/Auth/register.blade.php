@@ -1,4 +1,4 @@
-@extends('Auth.layout.app')
+@extends('Dashboard.Auth.layout.app')
 
 @section('content_auth')
 	<body id="kt_body" class="bg-body">
@@ -50,20 +50,11 @@
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">Already have an account?
-									<a href="../../demo1/dist/authentication/layouts/aside/sign-in.html" class="link-primary fw-bolder">Sign in here</a></div>
+									<a href="{{route('register')}}" class="link-primary fw-bolder">Sign in here</a></div>
 									<!--end::Link-->
 								</div>
-								<!--end::Heading-->
-								<!--begin::Action-->
-								<button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-								<img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Sign in with Google</button>
-								<!--end::Action-->
-								<!--begin::Separator-->
-								<div class="d-flex align-items-center mb-10">
-									<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-									<span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
-									<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-								</div>
+							 
+							 
 								<!--end::Separator-->
 								<!--begin::Input group-->
 								<div class="row fv-row mb-7">

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\News;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 class StoreNewsRequest extends FormRequest
 {
@@ -21,23 +22,44 @@ class StoreNewsRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
+  
     public function rules(): array
     {
-        return [
-            'title' => 'required|max:50',
-            'title_ar' => 'required|max:50', 
-            'images' =>'required' , 
-            'description' =>'required' , 
-            'description_ar' =>'required' , 
-            'location' =>'required' ,
-            'location_ar' =>'required' , 
-            'date' =>'required' 
-        ];
+        $selectedLanguage = $this->input('language', 'en');
+                $role_ar =  [
+                    'title_ar' => 'required|max:255', 
+                    'images' =>'required' , 
+                    'description_ar' =>'required' , 
+                    'location_ar' =>'required' ,
+                    'language' => 'required' ,
+                    'date' =>'required' 
+              ];
+                $role_en =[
+                'title' => 'required|max:255',
+                'images' =>'required' , 
+                'description' =>'required' , 
+                'location' =>'required' ,
+                'language' => 'required' ,
+                'date' =>'required' 
+              ];
+ 
+                if($selectedLanguage == "ar"){
+                
+                    return $role_ar  ; 
+                }else
+                {
+                    return $role_en ; 
+                
+                }
+                    
+
+       
     }
     public function getData()
     {
-        $data=$this->validated();
  
+        $data=$this->validated();  
+        $data['language'] =  $this->input('language', 'en');
         return $data;
     }
 

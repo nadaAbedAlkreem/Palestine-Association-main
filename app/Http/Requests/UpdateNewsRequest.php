@@ -25,15 +25,32 @@ class UpdateNewsRequest extends FormRequest
     public function rules(): array
     {
         
-        return [
-            'title' => 'required|max:50',
-            'title_ar' => 'required|max:50', 
-            'location' =>'required' ,
-            'description' =>'required' , 
-            'description_ar' =>'required' , 
-            'location_ar' =>'required' , 
-            'dateAndTime' =>'required' 
-          ];
+       
+            $selectedLanguage = $this->input('language', 'en');
+                    $role_ar =  [
+                        'title_ar' => 'required|max:255', 
+                        'description_ar' =>'required' , 
+                        'location_ar' =>'required' ,
+                        'language' => 'required' ,
+                        'date' =>'required' 
+                  ];
+                    $role_en =[
+                    'title' => 'required|max:255',
+                    'description' =>'required' , 
+                    'location' =>'required' ,
+                    'language' => 'required' ,
+                    'date' =>'required' 
+                  ];
+     
+                    if($selectedLanguage == "ar"){
+                    
+                        return $role_ar  ; 
+                    }else
+                    {
+                        return $role_en ; 
+                    
+                    }
+   
     }
 
     public function getData(){

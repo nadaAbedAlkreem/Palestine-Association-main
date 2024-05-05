@@ -3,7 +3,7 @@ $(document).ready(function($)
 {             
 
  
-            var table = $('.data-table-contactUs').DataTable(
+            $('.data-table-contact').DataTable(
             {
                 processing: true,
                 serverSide: true,
@@ -21,7 +21,7 @@ $(document).ready(function($)
                     {data: 'full_name', name: 'full_name'},
                     {data: 'email', name: 'email'},
                     {data: 'message', name: 'message'},
-                   ,]     
+                   ]     
 
 
             });

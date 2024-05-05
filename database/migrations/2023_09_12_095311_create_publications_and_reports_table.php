@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('publications_and_reports', function (Blueprint $table) {
             $table->id();
-            $table->String('title') ; 
-            $table->String('title_ar') ; 
+            $table->String('title')->nullable() ; 
+            $table->String('title_ar')->nullable() ; 
             $table->String('file') ; 
-            $table->String('images'); 
+            $table->String('images');
+            $table->enum('language', ['ar', 'en']); 
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

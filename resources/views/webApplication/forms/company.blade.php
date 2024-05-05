@@ -1,6 +1,8 @@
 @extends('webApplication.layouts.app')
 
 @section('web_content')
+<link rel="stylesheet" href="{{url('build/css/demo.css')}}">
+
    
 <div class="container">
         <div class="card">
@@ -10,15 +12,15 @@
                         
                     </div>
                     <div class="steps-content">
-                        <h3><span class="step-number">  </span>المعلومات الاساسية </h3>
+                        <h3><span class="step-number">  </span> {{__('columns.Basic_Information')}} </h3>
                     </div>
                     <ul class="progress-bar">
-                        <li class="active">المعلومات العامة عن الجمعية</li>
-                        <li>معلومات اضافية</li>
-                        <li>معلومات اضافية</li>
-                        <li>معلومات عن المركز</li>
-                        <li>نطاق عملية المؤسسة</li>
-                        <li>نطاق عملية المؤسسة</li>
+                        <li class="active">{{__('columns.general_info')}}</li>
+                        <li>{{__('columns.additional_information')}} </li>
+                        <li>{{__('columns.additional_information')}}</li>
+                        <li>{{__('columns.center_info')}}</li>
+                        <li>{{__('columns.domin_instution')}}</li>
+                        <li>{{__('columns.domin_instution')}}</li>
                     </ul> 
                 </div>
                 <div class="right-side">
@@ -27,18 +29,18 @@
                     @csrf
                     <div class="main active">
                          <div class="text">
-                            <h2>المعلومات العامة عن الجمعية</h2>
-                            <p>الرجاء تعبئة البيانات</p>
+                            <h2>{{__('columns.general_info')}}</h2>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" name="organization_name" id="organization_name" style=" font-size: 12px;" placeholder="يرجى كتابة الاسم القانوني الكامل لمنظمتك وأي تسميات مختصرة">
+                                <input type="text" name="organization_name" id="organization_name" style=" font-size: 12px;" placeholder="{{__('columns.organization_name')}}">
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div" style="top: -10px;">
                                 <select name="organization_type" id="organization_type" >
-                                    <option selected hidden >نوع المنظمة</option>
+                                    <option selected hidden >{{__('columns.organization_type')}}</option>
                                     <option  value="Cultural Center">مركز ثقافي وفني</option>
                                     <option value="Educational or Higher Education Institution">مؤسسة تعليمية أو تعليم عالي</option>
                                     <option value ="Governmental Entity">جهة حكومية</option>
@@ -57,157 +59,157 @@
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" name="main_branch_address" id="main_branch_address"  placeholder="عنوان الفرع الرئيسي">
+                                <input type="text" name="main_branch_address" id="main_branch_address"  placeholder="{{__('columns.main_branch_address')}}">
                             </div>
 
                         </div>
                         <div class="input-text">
                             <div class="input-div">
                                     <input type="date"  name="year_founded">
-                                    <span >سنة التأسيس</span>
+                                    <span > {{__('columns.year_founded')}}</span>
                              </div>
                         </div>
 
                         <div class="buttons button_space">
-                                <button type="button"  class="next_button">التالي </button>
+                                <button type="button"  class="next_button">{{__('columns.next')}} </button>
                                 </div>
                     </div>
 
                     <div class="main">
                         <!-- <small><i class="fa fa-smile-o"></i></small> -->
                         <div class="text">
-                            <h2>معلومات اضافية</h2>
+                            <h2>{{__('columns.additional_information')}}</h2>
                             <!-- --------------------------- -->
-                            <p>الرجاء ادخال البيانات</p>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" name="email"  placeholder="الموقع الالكتروني الرسمي">
+                                <input type="text" name="email"  placeholder="{{__('columns.email')}}">
                             </div>
 
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text"  name="instagram" placeholder="انستجــرام">
+                                <input type="text"  name="instagram" placeholder="{{__('columns.instagram')}}">
                                
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" name="facebock"   placeholder=" فيس بــوك">
+                                <input type="text" name="facebock"   placeholder="{{__('columns.facebock')}}">
                             
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div"  >
-                                <input type="number"  name="annual_budget"  placeholder="الميزانية السنوية">
+                                <input type="number"  name="annual_budget"  placeholder="{{__('columns.annual_budget')}}">
                                 
                             </div>
                             <div class="input-div" >
-                                <input type="number"  name="number_of_centers"  placeholder="عدد المراكز">
+                                <input type="number"  name="number_of_centers"  placeholder="{{__('columns.number_of_centers')}}">
                               
                             </div>
                             <div class="input-div" >
-                                <input type="number"name="number_of_employees" placeholder="عدد الموظفين">
+                                <input type="number"name="number_of_employees" placeholder="{{__('columns.number_of_employees')}}">
               
                             </div>
                         </div>
                         <div class="buttons button_space" >
-                            <button  type="button" class="back_button"  >الرجوع</button>
-                            <button type="button" class="next_button">التالي</button>
+                            <button  type="button" class="back_button"  >{{__('columns.back')}}</button>
+                            <button type="button" class="next_button">{{__('columns.next')}}</button>
                         </div>
                     </div>
                     <div class="main">
                         <!-- <small><i class="fa fa-smile-o"></i></small> -->
                         <div class="text">
-                            <h2>معلومات اضافية</h2>
-                            <p>معلومات اضافية</p>
+                            <h2>{{__('columns.additional_information')}}</h2>
+                            <p> {{__('columns.additional_information')}}</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <textarea class="form-control" id="center_locations" name="center_locations" rows="4" placeholder="مواقع المركز" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
+                                <textarea class="form-control" id="center_locations" name="center_locations" rows="4" placeholder="{{__('columns.center_locations')}}" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
                                 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div" >
-                                <input type="number" name="registration_number_ministry_interior" placeholder=" رقم التسجيل لدى وزارة الداخلية" >
+                                <input type="number" name="registration_number_ministry_interior" placeholder = "{{__('columns.registration_number_ministry_interior')}}" >
                                
                             </div>
                         
                         </div>
                         <div class="input-text">
                             <div class="input-div"  >
-                                <input type="number"   name="registration_number_ministry_Finance" placeholder="  رقم التسجيل لدى وزارة المالية" >
+                                <input type="number"   name="registration_number_ministry_Finance" placeholder="{{__('columns.registration_number_ministry_Finance')}}" >
                               
                             </div>
                         </div>
                         <div class="buttons button_space">
-                            <button type="button" class="back_button" >الرجوع</button>
-                            <button type="button"  class="next_button">التالي</button>
+                            <button type="button" class="back_button" >{{__('columns.back')}}</button>
+                            <button type="button"  class="next_button">{{__('columns.next')}}</button>
                         </div>
                     </div>
                     <!-- ----------------------------- -->
                     <div class="main">
                         <!-- <small><i class="fa fa-smile-o"></i></small> -->
                         <div class="text">
-                            <h2>نطاق عملية المؤسسة</h2>
-                            <p>الرجاء تعبئة البيانات</p>
+                            <h2>{{__('columns.domin_instution')}}</h2>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div" >
-                                <input type="number"  name="Number_current_projects" placeholder="عدد المشاريع الحالية">
+                                <input type="number"  name="Number_current_projects" placeholder="{{__('columns.Number_current_projects')}}">
                           
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div" >
-                                <textarea class="form-control"   name="main_donors_projects" id="message" name="message" rows="4" placeholder="المانحون الرئيسيون من مشاريع سابقة/حاليا" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
+                                <textarea class="form-control"   name="main_donors_projects" id="message" name="message" rows="4" placeholder="{{__('columns.main_donors_projects')}}" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
                                 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div" >
-                                <textarea class="form-control" name="number_employees_organization" name="message" rows="4" placeholder="اجمالي عدد الموظفين التي تتعامل معهم منظمتك" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
+                                <textarea class="form-control" name="number_employees_organization" name="message" rows="4" placeholder="{{__('columns.number_employees_organization')}}" style="height: 100px;" style="font-family: 'Cairo', sans-serif;"></textarea>
                                 
                             </div>
                         </div>
                      
                         <div class="buttons button_space">
-                            <button type="button" class="back_button" >الرجوع</button>
-                            <button type="button" class="next_button">التالي</button>
+                            <button type="button" class="back_button" >{{__('columns.back')}}</button>
+                            <button type="button" class="next_button"> {{__('columns.next')}}</button>
                         </div>
                     </div>
                      <!-- ---------------- -->
                     <div class="main">
                         <!-- <small><i class="fa fa-smile-o"></i></small> -->
                         <div class="text">
-                            <h2>نطاق عملية المؤسسة</h2>
-                            <p>الرجاء تعبئة البيانات</p>
+                            <h2>{{__('columns.domin_instution')}}</h2>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                        
                         <div class="input-text">
                             <div class="input-div" >
-                                <textarea class="form-control" id="message" rows="4" name="nationalities_of_beneficiaries" placeholder="جنسيات المستفدين" style="height: 100px;"></textarea>
+                                <textarea class="form-control" id="message" rows="4" name="nationalities_of_beneficiaries" placeholder="{{__('columns.nationalities_of_beneficiaries')}}" style="height: 100px;"></textarea>
                                 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div" >
-                                <textarea class="form-control" id="message" name="age_group_beneficiaries" rows="4" placeholder="الفئة العمرية للمستفيدين" style="height: 100px;"></textarea>
+                                <textarea class="form-control" id="message" name="age_group_beneficiaries" rows="4" placeholder="{{__('columns.age_group_beneficiaries')}}" style="height: 100px;"></textarea>
                                 
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <textarea class="form-control" id="message" name="strategic_goals" rows="4" placeholder="تعداد الاهداف الاستراتيجية الرئيسية التي تهدف منظمتك الي تحقيقها في السنوات الثلاثة - الخمس القادمة" style="height: 100px;"></textarea>
+                                <textarea class="form-control" id="message" name="strategic_goals" rows="4" placeholder="{{__('columns.strategic_goals')}}" style="height: 100px;"></textarea>
                                 
                             </div>
                         </div>
                      
                         <div class="buttons button_space">
-                            <button type="button" class="back_button" >الرجوع</button>
-                            <button type="button" class="next_button">التالي</button>
+                            <button type="button" class="back_button" >{{__('columns.back')}}</button>
+                            <button type="button" class="next_button">{{__('columns.next')}}</button>
                         </div>
                     </div>
                      <!-- ---------------- -->
@@ -215,25 +217,25 @@
                     <div class="main">
                         <!-- <small><i class="fa fa-smile-o"></i></small> -->
                         <div class="text">
-                            <h2>نطاق عملية المؤسسة</h2>
-                            <p>الرجاء تعبئة البيانات</p>
+                        <h2>{{__('columns.domin_instution')}}</h2>
+                            <p>{{__('columns.fill_out')}}</p>
                         </div>
                        
                         <div class="input-text">
                             <div class="input-div fileinput">
                                 <input type="file" name="registration_certificate_ministry_interior" >
-                                <span>شهادة تسجيل منظمتكو/علم وخبر من وزارة الداخلية</span>
+                                <span>{{__('columns.registration_certificate_ministry_interior')}}</span>
                             </div>
                         </div>
                         <div class="input-text">
                             <div class="input-div fileinput">
                                 <input type="file" name="company_organizational_structure" >
-                                <span>الهيكل التنظيمي لشركتك</span>
+                                <span>{{__('columns.company_organizational_structure')}}</span>
                             </div>
                         </div>
                         <div class="buttons button_space">
-                            <button type="button"   class="back_button">الرجوع</button>
-                            <button type="button"  class="next_button">التالي</button>
+                            <button type="button"   class="back_button">{{__('columns.back')}}</button>
+                            <button type="button"  class="next_button"> {{__('columns.next')}}</button>
                         </div>
                     </div>
 
@@ -250,9 +252,8 @@
                                 </svg>
 
                                 <div class="text congrats">
-                                    <h2>تم الطلب بنجاح</h2>
-                                    <p>شكرا لك <span class="shown_name"></span>تم
-                                        إرسال معلوماتك بنجاح.</p>
+                                    <h2>{{__('columns.successfully')}}</h2>
+                                    <p>{{__('columns.thank_you')}}<span class="shown_name"></span>{{__('columns.done')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -263,8 +264,8 @@
             <script src="{{url('assets/js/scripts.bundle.js')}}"></script>  
     <script src="{{url('js/companyrequest.js')}}"></script>
 <script defer src="{{url('js/jquery library.js')}}"></script>
-<script defer src="{{url('js/bootstrap.min.js')}}"></script>
-<script defer src="{{url('js/main.js')}}"></script>
+<!-- <script defer src="{{url('js/bootstrap.min.js')}}"></script>
+<script defer src="{{url('js/main.js')}}"></script> -->
 
 
 @endsection

@@ -41,6 +41,7 @@ return new class extends Migration
             $table->String('strategic_goals') ;
              $table->String('registration_certificate_ministry_interior') ;
              $table->String('company_organizational_structure') ;
+             $table->enum('language', ['ar', 'en']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

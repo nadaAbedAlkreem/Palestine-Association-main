@@ -1,39 +1,38 @@
-var selectedValue = 0  ; 
+// Define selectedValue outside of the click event listener
+var selectedValue = 0;
 
 const cardElements = document.querySelectorAll('.cardDonate');
 cardElements.forEach((card) => {
- card.addEventListener('click', () => {
-    cardElements.forEach((otherCard) => {
-     otherCard.classList.remove('active');
+    card.addEventListener('click', () => {
+        // Update selectedValue within the event listener
+        selectedValue = parseInt(card.querySelector('span').textContent.slice(1));
+        console.log(`Selected value: ${selectedValue}`);
+        updateSelectedValue(selectedValue);
+        
+        
+        // Additional code for adding/removing class 'active'...
     });
-
-    card.classList.add('active');
- 
-   selectedValue =parseInt( card.querySelector('span').textContent.slice(1));
-   console.log(`Selected value: ${selectedValue}`);
-  });
 });
 
+    function updateSelectedValue(value) {
+        var selectedValueMoney = value;
+        return selectedValueMoney;
+    }
 
+$(".btnDonare").on('click', function (e) 
+{
+    let formData = new FormData($('#formStoreDonores')[0]);
+    var checkbox = document.getElementById("announcing_donor");
+    var defaultCheck2 = document.getElementById("defaultCheck2");
+    var checked_checkbox = (checkbox.checked) ? 1 : 0;
+    var checked_money = (defaultCheck2.checked) ? 1 : 0;
 
+    console.log(selectedValue); // Access selectedValue here
+
+    formData.append('money', selectedValue);
+    formData.append('announcing_donor', checked_checkbox);
+    formData.append('defaultCheck2', checked_money);
  
-$(".btnDonare").on('click', function (e)
-{ 
-    
-
-
-  let formData = new FormData($('#formStoreDonores')[0]);   //announcing_donor
-  var checkbox = document.getElementById("announcing_donor");
-  var defaultCheck2 = document.getElementById("defaultCheck2");
-  var checked_checkbox = (checkbox.checked)  ? 1 : 0 ; 
-  var checked_money = (defaultCheck2.checked)  ? 1 : 0 ; 
- formData.append('money',selectedValue);
- formData.append('announcing_donor',checked_checkbox);
- formData.append('defaultCheck2',checked_money);
-
-
- 
-
      $.ajaxSetup({
     headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -48,8 +47,9 @@ $(".btnDonare").on('click', function (e)
             success:function(response)
             {     
 
-                     console.log(formnumber);
+                     console.log(response);
  
+                     console.log("response");
                 
                  
                      Swal.fire({
@@ -83,5 +83,9 @@ $(".btnDonare").on('click', function (e)
             },
      
     });
-});
+
   
+    
+});
+
+

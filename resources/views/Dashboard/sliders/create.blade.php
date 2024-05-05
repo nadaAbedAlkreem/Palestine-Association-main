@@ -9,37 +9,43 @@
                             <!--begin::Container-->
                             <div id="kt_content_container" class="container-xxl">
 											 		<form id="SubmitFormSlider"  class="form d-flex flex-column flex-lg-row" data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/products.html"  enctype="multipart/form-data">
- 											           @csrf		 	
-											 		<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+ 											           @csrf	
+														<input type="hidden" id = "language" name="language" value="{{ App::getLocale() }}">
+														<input type="hidden"  id = "id" name="id">
+
+											 		    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                                       
 														<div class="card card-flush py-4">
 														<!--begin::Card header-->
 														<div class="card-header">
 																	<!--begin::Card title-->
 																	<div class="card-title">
-																		<h2>images</h2>
+																		<h2>{{__('columns.image')}}</h2>
 																	</div>
 																	<div class="card-body" >
 																	<div class="card-body pt-0">
                                                     <!--begin::Select2-->
 																<div class="control-group form-group">
 
-																	<label class="form-label">rediract to</label>
+																	<label class="form-label">{{__('columns.redirect_to')}}</label>
 
 																	<select class="form-select mb-2"   name="rediract_to" id="rediract_to">
-																	
-																						<option ></option>
-																						<option value="contact_us">contact us</option>
-																		
+																			<option ></option>
+																			<option value="contact_us">contact us</option>
+																			<option value="show_description">show description</option>
 																	</select>
                                                                    </div>
+																   <div class="control-group form-group"  id="newsInputContainer">
+																		<label>news </label>
+																		<select class="itemNews form-control"   id='itemNews'  style="width: 200px"  name="news_id"></select>
+																	</div>
 																   <div class="control-group form-group">
-																			<label class="form-label">text_button</label>
-																			<input type="text"  id = "text_button" name="text_button"   class="form-control required"  />
-																			</div>  
+																			<label class="form-label">{{__('columns.text_button')}}</label>
+																			<input type="text"  id = "text_button" name="text_button"   class="form-control "  />
+																   </div>  
 																   
-																   <div class="control-group form-group">
-																	<div class="form-check form-switch">
+																   <div class="control-group form-group" style="margin-top: 20px">
+																	<div class="form-check form-switch" >
 																		<label class="form-check-label" for="flexSwitchCheckDefault">active</label>
 																		<input class="form-check-input" type="checkbox" role="switch"  name ="active" id="active">
 																	</div>
@@ -75,7 +81,7 @@
 																<div class="card-body">
 
  																			<section>
-																			 <label class="form-label">image</label>
+																			 <label class="form-label">{{__('columns.image')}}</label>
 
 																			 <div class="card-body pt-0">
  
@@ -101,35 +107,36 @@
                                                                             <!--end::Remove-->
                                                              </div>	
                                                            </div>
+														                    @if($CurrentLang == "en")
 																			<div class="control-group form-group">
-																			<label class="form-label">title</label>
-																			<input type="text"  id = "title" name="title" class="form-control required" placeholder="title">
-																			</div> 
-																			<div class="control-group form-group">
-																			<input type="hidden"  id = "id" name="id">
-																			<label class="form-label">title ar</label>
-																			<input type="text"  id = "title_ar" name="title_ar" class="form-control required" placeholder="title_ar">
+																			<label class="form-label">{{__('columns.title')}}</label>
+																			<input type="text"  id = "title" name="title" class="form-control required" placeholder="{{__('columns.title')}}">
 																			</div> 
 
 																			<div class="control-group form-group">
-																			<label class="form-label">description</label>
-																			<textarea  type="text"  id = "description" name="description"   class="form-control required" ></textarea>
-																					
+																			<label class="form-label">{{__('columns.description')}}</label>
+																			<textarea  type="text"  id = "description" name="description"placeholder = "{{__('columns.description')}}"   class="form-control required" ></textarea>
+																	        </div> 
+																			@else
+
+																			<div class="control-group form-group">
+																			<label class="form-label">{{__('columns.title')}}</label>
+																			<input type="text"  id = "title_ar" name="title_ar" class="form-control required" placeholder="{{__('columns.title')}}">
 																			</div> 
 																			<div class="control-group form-group">
-																			<label class="form-label">description ar</label>
-																			<textarea    id = "description_ar" name="description_ar"   class="form-control required" ></textarea>
-																					
+																			<label class="form-label">{{__('columns.description')}}</label>
+																			<textarea    id = "description_ar" name="description_ar"  placeholder="{{__('columns.description')}}" class="form-control required" ></textarea>
 																			</div> 
+																			@endif
 						 
 																		  
 																			<div class="control-group form-group">
-																			<label class="form-label">publication start</label>
-																			<input type="datetime-local"  id = "publication_start" name="publication_start"   class="form-control required"  />
+																			<label class="form-label">{{__('columns.publication_start')}}</label>
+																			<input type="datetime-local"  id = "publication_start" name="publication_start" placeholder = "publication_start"   class="form-control required"  />
 																			</div> 
 																			<div class="control-group form-group">
-																			<label class="form-label">publication end</label>
-																			<input  type="datetime-local"  id = "publication_end" name="publication_end"   class="form-control required"  />
+																			<label class="form-label">{{__('columns.publication_end')}}</label>
+																			<input  type="datetime-local"  id = "publication_end" name="publication_end"  placeholder="publication_end"  class="form-control required"  />
 
 																			</div> 
 																			
@@ -137,7 +144,7 @@
 																		</div>
 																	</div>
                                                                     <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                                                            <span class="indicator-label">Save Changes</span>
+                                                                            <span class="indicator-label">{{__('button.Save')}}</span>
                                                                             <span class="indicator-progress">Please wait...
                                                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                    </button>
@@ -156,19 +163,12 @@
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{url('assets/plugins/global/plugins.bundle.js')}}"></script>
-		<script src="{{url('assets/js/scripts.bundle.js')}}"></script>
+				<!-- <script src="{{url('assets/js/scripts.bundle.js')}}"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- 
-		<!--end::Global Javascript Bundle-->
-		<!--begin::Page Vendors Javascript(used by this page)-->
+  
 		<script src="{{url('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-		<!--end::Page Vendors Javascript-->
-		<!--begin::Page Custom Javascript(used by this page)-->
- 		<script src="{{url('assets/js/widgets.bundle.js')}}"></script>
-		<script src="{{url('assets/js/custom/widgets.js')}}"></script>
-		<script src="{{url('assets/js/custom/apps/chat/chat.js')}}"></script>
-		<script src="{{url('assets/js/custom/utilities/modals/users-search.js')}}"></script>
-        @push('scripts')
+ 
+          @push('scripts')
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 		<script>
             flatpickr("input[type=datetime-local]", {
@@ -180,77 +180,115 @@
      		<!-- in this page  -->
 
 		<script  type= text/javascript>
-         
-			 $('#SubmitFormSlider').on('submit',function(e)
-            {      
-                    e.preventDefault();
-             
 
-                    let formData = new FormData($('#SubmitFormSlider')[0]);
-					var description = document.getElementById("description");
-					var description_ar = document.getElementById("description_ar");
-					console.log(tinymce.get("description").getContent());
-					  
-					  formData.append('description', tinymce.get("description").getContent());
-					  formData.append('description_ar', tinymce.get("description_ar").getContent());
+	        	hideInputNews() ; 
+				searchNewsData();
+				addSliderAction(); 
 
-
-
-                    
-            
-                    $.ajaxSetup({
-                    headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }});
-                    $.ajax(
-                    {
-                            type:"POST",
-                            url: "slider",
-                            data:formData,
-                            contentType:false, // determint type object 
-                            processData: false,  // processing on response 
-                            success:function(response)
-                            {
-                            $('#successMsg').show();
-                            console.log(response);
-                            Swal.fire({
-                                text: "You have successfully reset your password!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: 
-                                {
-                                    confirmButton: "btn btn-primary"
-                                }
-                               })
-
-                            
-                                },
-                        
-                            error: function(response) 
-                            {
-
-                                console.log(response);
-                                console.log("response");
-                                Swal.fire(
-                                    {
-                                            text:  response.responseJSON.message  , 
-                                            icon: "error",
-                                            buttonsStyling: false,
-                                            confirmButtonText: "Ok, got it!",
-                                                customClass: {
-                                                    confirmButton: "btn btn-primary"
-
-                                                    }
-                                        })
-                                 
-                            },
-                    });
-
-
-            }); 
+           
+			
   
 
+			 function hideInputNews()
+			 {
+				$('#newsInputContainer').hide();
+				$('#rediract_to').on('change', function() 
+					{
+						// Get the selected value
+							var selectedValue = $(this).val();
+
+							// Check if the selected value is 'show_description'
+							if (selectedValue === 'show_description') {
+								// Show the input for 'news'
+								$('#newsInputContainer').show();
+							} else {
+								// Hide the input for 'news'
+								$('#newsInputContainer').hide();
+							}
+					});
+			 }
+			 function searchNewsData()
+			 {
+				$('.itemNews').select2(
+				{
+					placeholder: 'Select an item',
+					ajax: {
+						url: '/select2-autocomplete-ajax-news',
+						dataType: 'json',
+						delay: 250,
+						processResults: function (data) {
+						return {
+							results:  $.map(data, function (item) {
+								return {
+									text:  (item.language === "en")? item.title :  item.title_ar ,
+									id: item.id
+								}
+ 							})
+						};
+						},
+						// cache: true
+					}
+				});
+			 }
+			 function addSliderAction()
+			 {
+				$('#SubmitFormSlider').on('submit',function(e)
+					{      
+							e.preventDefault();
+							let formData = new FormData($('#SubmitFormSlider')[0]);
+							$.ajaxSetup({
+							headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+									}});
+							$.ajax(
+							{
+									type:"POST",
+									url: "slider",
+									data:formData,
+									contentType:false, // determint type object 
+									processData: false,  // processing on response 
+									success:function(response)
+									{
+									$('#successMsg').show();
+									console.log(response);
+									Swal.fire({
+										text: "You have successfully reset your password!",
+										icon: "success",
+										buttonsStyling: false,
+										confirmButtonText: "Ok, got it!",
+										customClass: 
+										{
+											confirmButton: "btn btn-primary"
+										}
+									})
+
+									
+										},
+								
+									error: function(response) 
+									{
+
+										console.log(response);
+										console.log("response");
+										Swal.fire(
+											{
+													text:  response.responseJSON.message  , 
+													icon: "error",
+													buttonsStyling: false,
+													confirmButtonText: "Ok, got it!",
+														customClass: {
+															confirmButton: "btn btn-primary"
+
+															}
+												})
+										
+									},
+							});
+
+
+					}); 
+			 }
+ 
 		</script>
                                          
    

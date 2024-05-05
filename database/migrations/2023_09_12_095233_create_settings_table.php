@@ -16,6 +16,8 @@ return new class extends Migration
             $table->String('key')->unique();
             $table->String('value')->nullable() ; 
             $table->String('groub')->nullable();
+            $table->enum('language', ['ar', 'en'])->nullable();
+            $table->enum('type_field', ['image', 'textarea', 'input']);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

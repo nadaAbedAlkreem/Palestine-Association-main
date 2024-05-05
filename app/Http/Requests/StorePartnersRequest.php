@@ -22,23 +22,40 @@ class StorePartnersRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' =>'required' , 
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar =   [
             'name_ar' =>'required' , 
-            'images'=>'required' , 
+            'image'=>'required' , 
+        ];  
+        $role_en =   [
+            'name' =>'required' , 
+            'image'=>'required' , 
         ];
+
+        if($selectedLanguage == "en")
+        {
+
+            return $role_en   ;
+        }else
+        {
+            return $role_ar   ; 
+        }
+
     }
 
     public  function getData()
     {
+        
         $data=$this->validated();
-        if ($this->hasFile('images')) 
+        $data['language'] =  $this->input('language', 'en');
+ 
+        if ($this->hasFile('image')) 
         {
             $path = 'uploads/images/partners/';
-            $nameImage = time()+rand(1,10000000).'.'. $this->file('images')->getClientOriginalExtension();
-            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('images') ));
+            $nameImage = time()+rand(1,10000000).'.'. $this->file('image')->getClientOriginalExtension();
+            Storage::disk('public')->put($path.$nameImage, file_get_contents( $this->file('image') ));
             $data['images'] = $path.$nameImage ;
         }
-        return $data;
+         return $data;
     }
 }

@@ -22,20 +22,36 @@ class StoreVisualLibrariesRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {
-        return [
-             'title' => 'required' , 
-             'title_ar' => 'required' , 
-             'description' => 'required' , 
-             'description_ar' =>'required' , 
-             'image' => 'required',
-             'images' => 'required'
-        ];
+    {        
+        $selectedLanguage = $this->input('language', 'en');
+        $role_ar =  [
+            'title_ar' => 'required' , 
+            'description_ar' =>'required' , 
+            'image' => 'required',
+            'images' => 'required'
+       ];
+        $role_en = [
+            'title' => 'required' , 
+            'description' => 'required' , 
+            'image' => 'required',
+            'images' => 'required'
+       ];
+
+        if($selectedLanguage == "ar"){
+        
+            return $role_ar  ; 
+        }else
+        {
+            return $role_en ; 
+        
+        }
     }
 
     public function getData()
     {
         $data=$this->validated();
+        $data['language'] =  $this->input('language', 'en');
+
         if ($this->hasFile('image')) 
         {
             $path = 'uploads/images/visaulLibraries/';

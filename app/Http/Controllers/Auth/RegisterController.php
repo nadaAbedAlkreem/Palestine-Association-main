@@ -8,6 +8,8 @@ use App\Http\Requests\RegisterRequest ;
 use App\Models\Admins ; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -18,8 +20,7 @@ class RegisterController extends Controller
     }
     public function register(Request $request)
     {  
-  
-        $validator = Validator::make($request->all(), 
+         $validator = Validator::make($request->all(), 
         [    
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
@@ -33,17 +34,29 @@ class RegisterController extends Controller
                     'errors' => $validator->errors(),
                 ], 422); 
             }
-            $fullName = $request['firstName'].' '.$request['lastName']; 
+            $full_name = $request['firstName'].' '.$request['lastName']; 
             $register =  Admins::create(
                 [
-                    'full_name' => $fullName,
+                    'full_name' => $full_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                ]);
 
-            if ($register){ 
-              
-                return response()->view('Dashboard.Auth.login') ; 
+               
+             if ($register){ 
+ 
+                $user = Admins::find($register->id);
+                $adminSuperRole = Role::where('name', 'super-admin')->first();
+                $adminStaffRole = Role::where('name', 'staff')->first();
+                $superAdminsCount = Admins::role('super-admin')->count();
+                   if ($superAdminsCount == 0 )
+                   {
+                       $user->assignRole($adminSuperRole);              
+                   } else 
+                   {
+                        $user->assignRole($adminStaffRole);
+                   }
+                 return response()->view('Dashboard.Auth.login') ; 
 
                  
       

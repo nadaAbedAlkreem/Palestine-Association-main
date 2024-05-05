@@ -1,10 +1,61 @@
  
 $(document).ready(function($)
 {             
+    var columns  = null  ; 
+    var language_datatables = null;
+    var currentUrl = window.location.href;
+    console.log(currentUrl);
+    var parts = currentUrl.split("/");
+    var current_lang = parts[parts.length - 2];
+    console.log(current_lang);
 
+
+    if (current_lang == "ar") 
+    {       
+        language_datatables = {
+            sEmptyTable: "لا يوجد بيانات ",
+            sInfo: "يتم عرض _START_ إلى _END_ من _TOTAL_ من الإدخالات",
+            sInfoEmpty: "عرض 0 إلى 0 من أصل 0 إدخالات",
+            sInfoFiltered: "(تمت التصفية من إجمالي _MAX_ الإدخالات)",
+            sInfoPostFix: "",
+            sInfoThousands: "",
+            sLengthMenu: "إظهار إدخالات _MENU_",
+            sLoadingRecords: "جارٍ التحميل...",
+            sProcessing: "جارٍ المعالجة...",
+            sSearch: "البحث:",
+            sZeroRecords: "لم يتم العثور على سجلات مطابقة",
+            oPaginate: {
+                sFirst: "الأولى",
+                sLast: "الأخير",
+                sNext: "التالي",
+                sPrevious: "السابق",
+            },
+            oAria: {
+                sSortAscending: ": التنشيط لفرز الأعمدة تصاعديًا",
+                sSortDescending: ": التنشيط لفرز الأعمدة تنازليًا",
+            },
+        };
+
+
+        columns =  [ 
+            {data: 'title_ar', name: 'title_ar'},
+            {data: 'count', name: 'count'},
+            {data: 'action', name: 'action'}]  ;   
+        }else
+        {
+        
+        columns = [ 
+            {data: 'title', name: 'title'},
+            {data: 'count', name: 'count'},
+            {data: 'action', name: 'action'}
+                ]      ; 
+
+
+    } 
  
             var table = $('.data-table-achievements').DataTable(
             {
+                language: language_datatables,
                 processing: true,
                 serverSide: true,
                 ordering: false,
@@ -17,10 +68,7 @@ $(document).ready(function($)
                                     // d.category = $('#category').val()
                                 }
                 },
-                columns: [ 
-                    {data: 'title', name: 'title'},
-                    {data: 'count', name: 'count'},
-                    {data: 'action', name: 'action'},]     
+                columns: columns ,   
 
 
             });
@@ -83,7 +131,7 @@ $(document).ready(function($)
                 let formData = new FormData($('#SubmitFormAchievements')[0]);
  
                   
-            $.ajaxSetup({
+                $.ajaxSetup({
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         } });

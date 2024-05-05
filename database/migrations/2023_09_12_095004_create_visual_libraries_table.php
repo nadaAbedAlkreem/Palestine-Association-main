@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('visual_libraries', function (Blueprint $table) {
             $table->id();
-            $table->String('title');
-            $table->String('description');
-            $table->String('title_ar');
-            $table->String('description_ar');
+            $table->String('title')->nullable();
+            $table->String('description')->nullable();
+            $table->String('title_ar')->nullable();
+            $table->String('description_ar')->nullable();
             $table->String('image');
-             $table->timestamps();
+            $table->enum('language', ['ar', 'en']);
+            $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
     }

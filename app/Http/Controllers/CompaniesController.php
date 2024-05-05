@@ -16,11 +16,54 @@ class CompaniesController extends Controller
      */
     public function index(Request $request)
     {
+        $data = Companies::select('*')->get() ; 
+        //   dd($data[0]->social_media_sites.toCharArray());
          if ($request->ajax()) 
         {
             $data = Companies::select('*') ; 
             return DataTables::of($data)
             ->addIndexColumn()
+            ->addColumn('registration_certificate_ministry_interior' , function ($data){
+                $nameImage = $data->registration_certificate_ministry_interior; 
+                 $url=asset("/storage2/$nameImage");
+
+                return ' 
+                <div class="d-flex align-items-center">
+                    <!--begin::Thumbnail-->
+                    <a href="" class="symbol symbol-50px">
+                        <span class="symbol-label" style="background-image:url('.$url.');"></span>
+                    </a>
+                    <!--end::Thumbnail-->
+                    <div class="ms-5">
+                        <!--begin::Title-->
+                        <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->name.'</a>
+                        <!--end::Title-->
+                    </div>
+                </div>
+      
+           ' ;
+           })  
+           ->addColumn('company_organizational_structure' , function ($data){
+            $nameImage = $data->company_organizational_structure; 
+             $url=asset("/storage2/$nameImage");
+
+            return ' 
+            <div class="d-flex align-items-center">
+                <!--begin::Thumbnail-->
+                <a href="" class="symbol symbol-50px">
+                    <span class="symbol-label" style="background-image:url('.$url.');"></span>
+                </a>
+                <!--end::Thumbnail-->
+                <div class="ms-5">
+                    <!--begin::Title-->
+                    <a href="" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">'.$data->name.'</a>
+                    <!--end::Title-->
+                </div>
+            </div>
+  
+       ' ;
+       })  
+           ->rawColumns([ 'action'  , 'registration_certificate_ministry_interior', 'company_organizational_structure'])
             ->make(true); 
         }    
         return view('Dashboard.companies.index');
@@ -57,7 +100,7 @@ class CompaniesController extends Controller
     {
         //
     }
-
+   
     /**
      * Update the specified resource in storage.
      */
